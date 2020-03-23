@@ -14,10 +14,6 @@ public class Main {
                 sound.setChannel(0);
                 sound.noteOn(j);
                 System.out.println(j);
-                sound.setChannel(1);
-                sound.noteOn(j + 1);
-                sound.setChannel(2);
-                sound.noteOn(j + 2);
                 Thread.sleep(time*1000);
                 sound.allNotesOff();
             }
