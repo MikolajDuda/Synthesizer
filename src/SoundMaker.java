@@ -1,11 +1,12 @@
 import javax.sound.midi.*;
 
 
-public class SoundMaker{
+public class SoundMaker {
     private Synthesizer synthesizer;
     private MidiChannel channel;
     private int channelN = 0;  //0 by default
     private int volume = 60;
+    private int activeOctave = OCTAVE1;
     private int instrument = PIANO;
     private int bank = 0;
     private boolean[] noteIsPlaying;
@@ -29,6 +30,9 @@ public class SoundMaker{
             FLUTE = 73,
             BANJO = 105,
             STEEL_DRUMS = 114;
+
+
+    public final static int OCTAVE0 = 44, OCTAVE1 = 60, OCTAVE2 = 76, OCTAVE3 = 93, OCTAVE4 = 109;
 
     public SoundMaker() {   //default settings
         try {
@@ -57,21 +61,21 @@ public class SoundMaker{
     public void noteOn(int noteNumber) {
         if (noteNumber < 0 || noteNumber > 127) //https://en.scratch-wiki.info/wiki/MIDI_Notes
             throw new IllegalArgumentException("Midi note numbers must be in the range 0 to 127");
-        channel.noteOn( noteNumber, volume );
-        noteIsPlaying[noteNumber] = true;
+        channel.noteOn(noteNumber + activeOctave, volume);
+        noteIsPlaying[noteNumber + activeOctave] = true;
     }
 
     public void noteOff(int noteNumber) {
-        if (noteNumber >= 0 && noteNumber <= 127 && noteIsPlaying[noteNumber]) {
-            channel.noteOff( noteNumber );
-            noteIsPlaying[noteNumber] = false;
+        if ((noteNumber + activeOctave) >= 0 && (noteNumber + activeOctave) <= 127 && noteIsPlaying[noteNumber + activeOctave]) {
+            channel.noteOff(noteNumber + activeOctave);
+            noteIsPlaying[noteNumber + activeOctave] = false;
         }
     }
 
     public boolean isNoteOn(int noteNumber) {
         if (noteNumber < 0 || noteNumber > 127)
             throw new IllegalArgumentException("Midi note numbers must be in the range 0 to 127");
-        return noteIsPlaying[noteNumber];
+        return noteIsPlaying[noteNumber + activeOctave];
     }
 
     public void allNotesOff() {
@@ -92,7 +96,7 @@ public class SoundMaker{
     public void setInstrument(int bank, int instrument) throws InvalidMidiDataException {
         if (instrument < 0 || instrument > 127)
             throw new IllegalArgumentException("Midi instrument or bank numbers must be in the range 0 to 127");
-        channel.programChange(bank , instrument);
+        channel.programChange(bank, instrument);
         this.bank = bank;
         this.instrument = instrument;
     }
@@ -107,5 +111,13 @@ public class SoundMaker{
 
     public Instrument[] getInstruments(){
         return instruments;
+    }
+
+    public void setActiveOctave(int activeOctave) {
+        this.activeOctave = activeOctave;
+    }
+
+    public int getActiveOctave() {
+        return activeOctave;
     }
 }
