@@ -4,8 +4,8 @@ public class test {
     public static void main(String[] args) {
         //my testing settings
         JPanel panel = new test().panel;
-        SoundMaker sound = new SoundMaker();
-        sound.setActiveOctave(SoundMaker.OCTAVE1);
+        JavaSynth sound = new JavaSynth();
+        sound.setActiveOctave(JavaSynth.OCTAVE4);
         new Keyboard(panel, sound);
 
         //Create window

@@ -1,12 +1,12 @@
 import javax.sound.midi.*;
 
 
-public class SoundMaker {
+public class JavaSynth {
     private Synthesizer synthesizer;
     private MidiChannel channel;
     private int channelN = 0;  //0 by default
     private int volume = 60;
-    private int activeOctave = OCTAVE1;
+    private int activeOctave = OCTAVE4;
     private int instrument = PIANO;
     private int bank = 0;
     private boolean[] noteIsPlaying;
@@ -32,9 +32,9 @@ public class SoundMaker {
             STEEL_DRUMS = 114;
 
 
-    public final static int OCTAVE0 = 44, OCTAVE1 = 60, OCTAVE2 = 76, OCTAVE3 = 93, OCTAVE4 = 109;
+    public final static int OCTAVE0 = 0, OCTAVE2 = 24, OCTAVE4 = 48, OCTAVE6 = 72, OCTAVE8 = 96;
 
-    public SoundMaker() {   //default settings
+    public JavaSynth() {   //default settings
         try {
             synthesizer = MidiSystem.getSynthesizer();
             instruments = synthesizer.getAvailableInstruments();
