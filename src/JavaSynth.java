@@ -1,4 +1,5 @@
 import javax.sound.midi.*;
+import java.util.Arrays;
 
 
 public class JavaSynth {
@@ -10,7 +11,7 @@ public class JavaSynth {
     private int instrument = PIANO;
     private int bank = 0;
     private boolean[] noteIsPlaying;
-    private static Instrument[] instruments;    //list of available instruments
+    private Instrument[] instruments;    //list of available instruments
 
     public final static int //some basic instruments
             PIANO = 0,
@@ -84,6 +85,7 @@ public class JavaSynth {
     }
 
     public int getInstrument() {
+
         return instrument;
     }
 

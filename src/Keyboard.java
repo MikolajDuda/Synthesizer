@@ -1,10 +1,8 @@
 import javax.swing.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Keyboard{
     JavaSynth sound = new JavaSynth();    //synthesizer with default settings
-    boolean[] arePressed = new boolean[24];
 
     private int[] buttons = new int[]{  //piano keys
             KeyEvent.VK_E, KeyEvent.VK_4, KeyEvent.VK_R, KeyEvent.VK_5, KeyEvent.VK_T, KeyEvent.VK_Y, KeyEvent.VK_7, KeyEvent.VK_U, KeyEvent.VK_8 ,KeyEvent.VK_I, KeyEvent.VK_9, KeyEvent.VK_O
