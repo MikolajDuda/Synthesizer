@@ -30,7 +30,8 @@ public class SoundMaker {
             //TODO: play(line, WaveMaker( waveForm, frequency )
 
 
-            play(line, generateSine(frequency, 1));
+            //play(line, generateSine(frequency, 1));
+            play(line, WaveMaker.getWave(waveForm, frequency));
 
             line.drain();
             line.close();
@@ -39,7 +40,7 @@ public class SoundMaker {
         }
     }
 
-    private static byte[] generateSine(double frequencyOfSignal, int seconds) {
+    private static byte[] generateSine(double frequencyOfSignal, int seconds) {     //TODO: wywalic generateSine
         // total samples = (duration in second) * (samples per second) * 2
         byte[] sin = new byte[2 * seconds * sampleRate];
         double samplingInterval = (double) (sampleRate / (2 * frequencyOfSignal));
@@ -56,7 +57,7 @@ public class SoundMaker {
         return sin;
     }
 
-    private static void play(SourceDataLine line, byte[] array) {
+    private static void play(SourceDataLine line, byte[] array) {               //TODO: zrobic ladne play()
         int length = sampleRate * array.length / 1000;
         line.write(array, 0, array.length);
     }
