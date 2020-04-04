@@ -10,12 +10,16 @@ public class Keyboard{
     };
 
     public Keyboard(JPanel panel, JavaSynth sound) {
-        if(sound != null) this.sound = sound;
+        if (sound != null) this.sound = sound;
 
         for (int i = 0; i < buttons.length; i++) {  //listeners for all piano keys
             int note = i;
-            panel.registerKeyboardAction(e -> this.sound.noteOn(note), KeyStroke.getKeyStroke(buttons[i], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-        }
-
+                panel.registerKeyboardAction(e -> {
+                    for (int j = 0; j < buttons.length; j++) sound.noteOff(j);
+                    sound.noteOn(note);
+                }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+            }
+        panel.registerKeyboardAction(actionEvent -> sound.allNotesOff(), KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
+
 }
