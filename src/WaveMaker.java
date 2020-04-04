@@ -63,7 +63,6 @@ public class WaveMaker {
                 break;
 
         }
-        System.out.println(wave.length);
         amplitude = 1;
         return wave;
 
