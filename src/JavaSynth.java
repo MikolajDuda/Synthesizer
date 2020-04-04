@@ -90,14 +90,10 @@ public class JavaSynth {
     }
 
     public String getInstrumentName() {
-        if (instrument < 0 || instrument > 127)
-            throw new IllegalArgumentException("Midi instrument numbers must be in the range 0 to 127");
         return instruments[instrument].getName();
     }
 
-    public void setInstrument(int bank, int instrument) throws InvalidMidiDataException {
-        if (instrument < 0 || instrument > 127)
-            throw new IllegalArgumentException("Midi instrument or bank numbers must be in the range 0 to 127");
+    public void setInstrument(int bank, int instrument) {
         channel.programChange(bank, instrument);
         this.bank = bank;
         this.instrument = instrument;

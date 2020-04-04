@@ -1,10 +1,10 @@
 import javax.sound.midi.Instrument;
-import javax.sound.midi.InvalidMidiDataException;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.Caret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +15,7 @@ public class SynthForm {
     private JavaSynth synthesizer;
     private Keyboard keyboard;
     private JPanel mainPanel;
-    private JScrollPane scrollPanel;
+    private JScrollPane scrollPanel1;
     private JPanel somePanel;
     private JPanel imagePanel;
     private JPanel rightPanel;
@@ -25,6 +25,7 @@ public class SynthForm {
     private JComboBox<Integer> octaveBox;
     private JComboBox effectBox;
     private JLabel image;
+    private final int STRANGE_START = 128;
 
     public SynthForm() {
         synthesizer = new JavaSynth();  //New Java synthesizer
@@ -32,22 +33,6 @@ public class SynthForm {
         setInstruments();   //Filling list of instruments
         keyboard = new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
 
-
-
-        instrumentsList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                int index = instrumentsList.getSelectedIndex();
-                try {
-                    synthesizer.allNotesOff();
-                    synthesizer.setInstrument(0, index);
-                    keyboard = new Keyboard(mainPanel, synthesizer);
-                    activeInstrument.setText(synthesizer.getInstrumentName());
-                } catch (InvalidMidiDataException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         slider.addChangeListener(new ChangeListener() {
             @Override
@@ -77,6 +62,18 @@ public class SynthForm {
                 synthesizer.allNotesOff();
             }
         });
+
+        instrumentsList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                int index = instrumentsList.getSelectedIndex();
+                synthesizer.allNotesOff();
+                synthesizer.setInstrument(0, index );
+                keyboard = new Keyboard(mainPanel, synthesizer);
+                activeInstrument.setText(synthesizer.getInstrumentName());
+            }
+        });
+
     }
 
     public static void main(String[] args) {
@@ -86,16 +83,15 @@ public class SynthForm {
         frame.setBackground(Color.GRAY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(1200,600);
+        frame.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),600);
         frame.setVisible(true);
     }
 
     private void setInstruments(){
         DefaultListModel<String> model = new DefaultListModel<>();
-        Instrument[] l = synthesizer.getInstruments();
         int num = 1;
-        for (Instrument instr : l) {
-            model.addElement(num +  ". " + instr.getName());
+        for (int  i = 0; i < 128; i++) {    //128 because of 128 sounds in this bank
+            model.addElement(num + ". " + synthesizer.getInstruments()[i].getName());
             num++;
         }
         instrumentsList.setModel(model);
@@ -105,23 +101,26 @@ public class SynthForm {
         imagePanel.setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
         rightPanel.setBackground(Color.WHITE);
-        scrollPanel.setBackground(Color.WHITE);;
+
+        //list settings
+        scrollPanel1.setBackground(Color.WHITE);
+        scrollPanel1.setViewportView(instrumentsList);
+        instrumentsList.setLayoutOrientation(JList.VERTICAL);
+        instrumentsList.setSelectedIndex(JavaSynth.PIANO);
+        instrumentsList.setSelectionForeground(Color.BLUE);
+        instrumentsList.setFont(new Font("Arial", Font.PLAIN, 12));
+        instrumentsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         activeInstrument.setBackground(Color.WHITE);
         activeInstrument.setForeground(Color.RED);
         activeInstrument.setFont(new Font("Dubai", Font.ITALIC, 35));
         activeInstrument.setEditable(false);
         activeInstrument.setText(synthesizer.getInstrumentName());
-        slider.setMaximum(127);
+        slider.setMaximum(Byte.MAX_VALUE);
         slider.setMinimum(0);
         slider.setValue(synthesizer.getVolume());
         fillBoxWOctaves(octaveBox);
         octaveBox.setSelectedIndex(2);
-    }
-
-    private void fillComboBox(JComboBox<Integer> box, int range){
-        for(int i = 0; i < range; i ++){
-            box.addItem(i);
-        }
     }
 
     private void fillBoxWOctaves(JComboBox<Integer> box){
