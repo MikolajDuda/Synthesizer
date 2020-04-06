@@ -1,10 +1,8 @@
-import javax.sound.midi.Instrument;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.text.Caret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,9 +21,18 @@ public class SynthForm {
     private JTextArea activeInstrument;
     private JSlider slider;
     private JComboBox<Integer> octaveBox;
-    private JComboBox effectBox;
-    private JLabel image;
-    private final int STRANGE_START = 128;
+    private JComboBox<String> effectBox;
+    private JLabel icon;
+    private JSlider effSlider1;
+    private JSlider effSlider2;
+    private JLabel effectLabel;
+    private JLabel effSetting1;
+    private JLabel effSetting2;
+    private JPanel effectPanel;
+    private JButton resetButton1;
+    private JButton resetButton2;
+    private int[] effDefaultValue = new int[2];
+    private int[] effCtrs = new int[2];
 
     public SynthForm() {
         synthesizer = new JavaSynth();  //New Java synthesizer
@@ -74,6 +81,55 @@ public class SynthForm {
             }
         });
 
+        effectBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                effectPanel.setVisible(true);
+                if (effectBox.getSelectedIndex() == 0){ //Vibrato
+                    effCtrs[0] = 77;    //Depth
+                    effCtrs[1] = 78;    //Delay
+                    effDefaultValue[0] = synthesizer.getChannel().getController(effCtrs[0]);
+                    effDefaultValue[1] = synthesizer.getChannel().getController(effCtrs[1]);
+                    effectLabel.setText("Vibrato");
+                    effSetting1.setText("Depth");
+                    effSetting2.setText("Delay");
+                    effSlider1.setValue(synthesizer.getChannel().getController(effCtrs[0]));
+                    effSlider1.setMinimum(0);
+                    effSlider1.setMaximum(127);
+                    effSlider2.setValue(synthesizer.getChannel().getController(effCtrs[1]));
+                    effSlider2.setMinimum(0);
+                    effSlider2.setMaximum(127);
+                }
+            }
+        });
+
+        effSlider1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent changeEvent) {
+                synthesizer.getChannel().controlChange(effCtrs[0], effSlider1.getValue());
+            }
+        });
+        effSlider2.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent changeEvent) {
+                synthesizer.getChannel().controlChange(effCtrs[1], effSlider2.getValue());
+            }
+        });
+
+        resetButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                synthesizer.getChannel().controlChange(effCtrs[0], effDefaultValue[0]);
+                effSlider1.setValue(effDefaultValue[0]);
+            }
+        });
+        resetButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                synthesizer.getChannel().controlChange(effCtrs[1], effDefaultValue[1]);
+                effSlider2.setValue(effDefaultValue[1]);
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -97,6 +153,7 @@ public class SynthForm {
         instrumentsList.setModel(model);
     }
 
+
     private void setComponentsUI(){
         imagePanel.setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
@@ -111,16 +168,29 @@ public class SynthForm {
         instrumentsList.setFont(new Font("Arial", Font.PLAIN, 12));
         instrumentsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        //Banner with name of active instrument
         activeInstrument.setBackground(Color.WHITE);
         activeInstrument.setForeground(Color.RED);
         activeInstrument.setFont(new Font("Dubai", Font.ITALIC, 35));
         activeInstrument.setEditable(false);
         activeInstrument.setText(synthesizer.getInstrumentName());
+
+        //Volume slider settings
         slider.setMaximum(Byte.MAX_VALUE);
         slider.setMinimum(0);
         slider.setValue(synthesizer.getVolume());
+
+        //fill boxes
         fillBoxWOctaves(octaveBox);
-        octaveBox.setSelectedIndex(2);
+        fillEffectsBox(effectBox);
+        octaveBox.setSelectedIndex(2);  //basic octave
+        effectBox.setSelectedIndex(-1); //lack of choice
+
+        //Setting keyboard image
+        icon.setIcon(new ImageIcon(System.getProperty("user.dir") + "/src/keyboard_colored.jpg"));
+
+        //hide panel w/ effects settings
+        effectPanel.setVisible(false);
     }
 
     private void fillBoxWOctaves(JComboBox<Integer> box){
@@ -131,5 +201,10 @@ public class SynthForm {
         tmp[3] = JavaSynth.OCTAVE6;
         tmp[4] = JavaSynth.OCTAVE8;
         for (int element : tmp) box.addItem(element);
+    }
+
+
+    private void fillEffectsBox(JComboBox<String> box){
+        box.addItem("Vibrato");
     }
 }

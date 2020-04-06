@@ -1,5 +1,4 @@
 import javax.sound.midi.*;
-import java.util.Arrays;
 
 
 public class JavaSynth {
@@ -103,8 +102,12 @@ public class JavaSynth {
         this.channelN = channelN;
     }
 
-    public int getChannel(){
+    public int getChannelN(){
         return this.channelN;
+    }
+
+    public MidiChannel getChannel(){
+        return channel;
     }
 
     public Instrument[] getInstruments(){
