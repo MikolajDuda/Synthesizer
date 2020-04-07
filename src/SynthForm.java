@@ -31,7 +31,9 @@ public class SynthForm {
     private JPanel effectPanel;
     private JButton resetButton1;
     private JButton resetButton2;
-    private Effect[] effects = new Effect[1];
+    private JPanel sett2Panel;
+    private JPanel sett1Panel;
+    private Effect[] effects = new Effect[2];   //amount of available effects
     private int activeEffect;
 
     public SynthForm() {
@@ -86,6 +88,9 @@ public class SynthForm {
             public void actionPerformed(ActionEvent actionEvent) {
                 if (effectBox.getSelectedIndex() == 0){
                     activeEffect = 0;
+                    effSetting1.setVisible(true);
+                    effSetting2.setVisible(true);
+                    sett2Panel.setVisible(true);
                     effectLabel.setText("Vibrato");
                     effSetting1.setText("Depth");
                     effSetting2.setText("Delay");
@@ -96,36 +101,47 @@ public class SynthForm {
                     effSlider2.setMinimum(0);
                     effSlider2.setMaximum(127);
                 }
+                if (effectBox.getSelectedIndex() == 1){
+                    activeEffect = 1;
+                    effectLabel.setText("Balance");
+                    effSetting1.setVisible(false);
+                    effSetting2.setVisible(false);
+                    sett2Panel.setVisible(false);
+                    effSlider1.setValue(effects[activeEffect].getDefaultValue(Balance.BALANCE));
+                    effSlider1.setMinimum(0);
+                    effSlider1.setMaximum(127);
+                }
                 effectPanel.setVisible(true);
             }
         });
 
+
         effSlider1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                effects[activeEffect].setValue(JVibrato.VIBRATO_DEPTH, effSlider1.getValue());
+                effects[activeEffect].setValue(effects[activeEffect].getControllers()[0], effSlider1.getValue());
             }
         });
 
         effSlider2.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                effects[activeEffect].setValue(JVibrato.VIBRATO_DELAY, effSlider2.getValue());
+                effects[activeEffect].setValue(effects[activeEffect].getControllers()[1], effSlider2.getValue());
             }
         });
 
         resetButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                effects[activeEffect].setValue(JVibrato.VIBRATO_DEPTH, effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DEPTH));
-                effSlider1.setValue(effects[activeEffect].getValue(JVibrato.VIBRATO_DEPTH));
+                effects[activeEffect].setValue(effects[activeEffect].getControllers()[0], effects[activeEffect].getDefaultValue(effects[activeEffect].getControllers()[0]));
+                effSlider1.setValue(effects[activeEffect].getValue(effects[activeEffect].getControllers()[0]));
             }
         });
         resetButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                effects[activeEffect].setValue(JVibrato.VIBRATO_DELAY, effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DELAY));
-                effSlider2.setValue(effects[activeEffect].getValue(JVibrato.VIBRATO_DELAY));
+                effects[activeEffect].setValue(effects[activeEffect].getControllers()[1], effects[activeEffect].getDefaultValue(effects[activeEffect].getControllers()[1]));
+                effSlider2.setValue(effects[activeEffect].getValue(effects[activeEffect].getControllers()[1]));
             }
         });
     }
@@ -207,6 +223,7 @@ public class SynthForm {
         box.addItem("Vibrato");
         effects[0] = new JVibrato(synthesizer);
         box.addItem("Balance");
+        effects[1] = new Balance(synthesizer);
 
         for (Effect effect : effects) effect.setDefaultValue(); //Set default value for each effect
     }

@@ -3,4 +3,5 @@ public abstract class Effect {
     public abstract void setDefaultValue();
     public abstract int getDefaultValue(int controller);
     public abstract int getValue(int controller);
+    public abstract int[] getControllers();
 }

@@ -35,4 +35,9 @@ public class JVibrato extends Effect{
     public int getValue(int controller){
         return synthesizer.getChannel().getController(controller);
     }
+
+    @Override
+    public int[] getControllers() {
+        return new int[]{VIBRATO_DEPTH, VIBRATO_DELAY};
+    }
 }
