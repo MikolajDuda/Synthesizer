@@ -31,8 +31,8 @@ public class SynthForm {
     private JPanel effectPanel;
     private JButton resetButton1;
     private JButton resetButton2;
-    private int[] effDefaultValue = new int[2];
-    private int[] effCtrs = new int[2];
+    private Effect[] effects = new Effect[1];
+    private int activeEffect;
 
     public SynthForm() {
         synthesizer = new JavaSynth();  //New Java synthesizer
@@ -84,50 +84,48 @@ public class SynthForm {
         effectBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                effectPanel.setVisible(true);
-                if (effectBox.getSelectedIndex() == 0){ //Vibrato
-                    effCtrs[0] = 77;    //Depth
-                    effCtrs[1] = 78;    //Delay
-                    effDefaultValue[0] = synthesizer.getChannel().getController(effCtrs[0]);
-                    effDefaultValue[1] = synthesizer.getChannel().getController(effCtrs[1]);
+                if (effectBox.getSelectedIndex() == 0){
+                    activeEffect = 0;
                     effectLabel.setText("Vibrato");
                     effSetting1.setText("Depth");
                     effSetting2.setText("Delay");
-                    effSlider1.setValue(synthesizer.getChannel().getController(effCtrs[0]));
+                    effSlider1.setValue(effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DEPTH));
                     effSlider1.setMinimum(0);
                     effSlider1.setMaximum(127);
-                    effSlider2.setValue(synthesizer.getChannel().getController(effCtrs[1]));
+                    effSlider2.setValue(effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DELAY));
                     effSlider2.setMinimum(0);
                     effSlider2.setMaximum(127);
                 }
+                effectPanel.setVisible(true);
             }
         });
 
         effSlider1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                synthesizer.getChannel().controlChange(effCtrs[0], effSlider1.getValue());
+                effects[activeEffect].setValue(JVibrato.VIBRATO_DEPTH, effSlider1.getValue());
             }
         });
+
         effSlider2.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                synthesizer.getChannel().controlChange(effCtrs[1], effSlider2.getValue());
+                effects[activeEffect].setValue(JVibrato.VIBRATO_DELAY, effSlider2.getValue());
             }
         });
 
         resetButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                synthesizer.getChannel().controlChange(effCtrs[0], effDefaultValue[0]);
-                effSlider1.setValue(effDefaultValue[0]);
+                effects[activeEffect].setValue(JVibrato.VIBRATO_DEPTH, effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DEPTH));
+                effSlider1.setValue(effects[activeEffect].getValue(JVibrato.VIBRATO_DEPTH));
             }
         });
         resetButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                synthesizer.getChannel().controlChange(effCtrs[1], effDefaultValue[1]);
-                effSlider2.setValue(effDefaultValue[1]);
+                effects[activeEffect].setValue(JVibrato.VIBRATO_DELAY, effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DELAY));
+                effSlider2.setValue(effects[activeEffect].getValue(JVibrato.VIBRATO_DELAY));
             }
         });
     }
@@ -191,6 +189,7 @@ public class SynthForm {
 
         //hide panel w/ effects settings
         effectPanel.setVisible(false);
+
     }
 
     private void fillBoxWOctaves(JComboBox<Integer> box){
@@ -206,5 +205,9 @@ public class SynthForm {
 
     private void fillEffectsBox(JComboBox<String> box){
         box.addItem("Vibrato");
+        effects[0] = new JVibrato(synthesizer);
+        box.addItem("Balance");
+
+        for (Effect effect : effects) effect.setDefaultValue(); //Set default value for each effect
     }
 }
