@@ -13,7 +13,11 @@ public class Main {
         byte[] wave4 = WaveMaker.getWave(WaveMaker.TRIANGLE, 440);
         SoundMaker.playWave(wave4);
 
-
+/*  InstrumentsForm
+    public static void main(String[] args){
+        JavaSynth x = new JavaSynth();
+        System.out.println(System.getProperty("user.dir"));
+ */
     }
 
 }

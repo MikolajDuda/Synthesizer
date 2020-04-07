@@ -10,7 +10,7 @@ public class JavaSynth {
     private int instrument = PIANO;
     private int bank = 0;
     private boolean[] noteIsPlaying;
-    private static Instrument[] instruments;    //list of available instruments
+    private Instrument[] instruments;    //list of available instruments
 
     public final static int //some basic instruments
             PIANO = 0,
@@ -84,18 +84,15 @@ public class JavaSynth {
     }
 
     public int getInstrument() {
+
         return instrument;
     }
 
     public String getInstrumentName() {
-        if (instrument < 0 || instrument > 127)
-            throw new IllegalArgumentException("Midi instrument numbers must be in the range 0 to 127");
         return instruments[instrument].getName();
     }
 
-    public void setInstrument(int bank, int instrument) throws InvalidMidiDataException {
-        if (instrument < 0 || instrument > 127)
-            throw new IllegalArgumentException("Midi instrument or bank numbers must be in the range 0 to 127");
+    public void setInstrument(int bank, int instrument) {
         channel.programChange(bank, instrument);
         this.bank = bank;
         this.instrument = instrument;
@@ -105,8 +102,12 @@ public class JavaSynth {
         this.channelN = channelN;
     }
 
-    public int getChannel(){
+    public int getChannelN(){
         return this.channelN;
+    }
+
+    public MidiChannel getChannel(){
+        return channel;
     }
 
     public Instrument[] getInstruments(){
