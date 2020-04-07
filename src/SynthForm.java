@@ -67,7 +67,7 @@ public class SynthForm {
         octaveBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (octaveBox.getItemCount() != 0) synthesizer.setActiveOctave((Integer)    octaveBox.getSelectedItem());
+                if (octaveBox.getItemCount() != 0) synthesizer.setActiveOctave(synthesizer.getOctaves()[octaveBox.getSelectedIndex()]);
                 synthesizer.allNotesOff();
             }
         });
@@ -190,7 +190,7 @@ public class SynthForm {
         activeInstrument.setText(synthesizer.getInstrumentName());
 
         //Volume slider settings
-        slider.setMaximum(Byte.MAX_VALUE);
+        slider.setMaximum(127);
         slider.setMinimum(0);
         slider.setValue(synthesizer.getVolume());
 
@@ -210,11 +210,11 @@ public class SynthForm {
 
     private void fillBoxWOctaves(JComboBox<Integer> box){
         int[] tmp = new int[5];
-        tmp[0] = JSynth.OCTAVE0;
-        tmp[1] = JSynth.OCTAVE2;
-        tmp[2] = JSynth.OCTAVE4;
-        tmp[3] = JSynth.OCTAVE6;
-        tmp[4] = JSynth.OCTAVE8;
+        tmp[0] = 0;
+        tmp[1] = 2;
+        tmp[2] = 4;
+        tmp[3] = 6;
+        tmp[4] = 8;
         for (int element : tmp) box.addItem(element);
     }
 

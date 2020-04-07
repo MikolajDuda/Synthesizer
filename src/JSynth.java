@@ -5,7 +5,7 @@ public class JSynth {
     private Synthesizer synthesizer;
     private MidiChannel channel;
     private int channelN = 0;  //0 by default
-    private int volume = 60;
+    private int volume;
     private int activeOctave = OCTAVE4;
     private int instrument = PIANO;
     private int bank = 0;
@@ -22,7 +22,7 @@ public class JSynth {
             GUITAR = 24,
             ELECTRIC_GUITAR = 27,
             VIOLIN = 40,
-                HARP = 46,
+            HARP = 46,
             TIMPANI = 47,
             TRUMPET = 56,
             TROMBONE = 57,
@@ -41,6 +41,8 @@ public class JSynth {
             synthesizer.open();
             MidiChannel[] allChannels = synthesizer.getChannels();
             channel = allChannels[channelN];
+            volume = channel.getController(7);
+            setVolume(volume/2);
 
         } catch (MidiUnavailableException e) {
             throw new IllegalStateException("Midi support is not available!");
@@ -52,6 +54,7 @@ public class JSynth {
         if (volumeLevel < 0 || volumeLevel > 127)
             throw new IllegalArgumentException("Midi volume level must be in the range 0 to 127");
         volume = volumeLevel;
+        channel.controlChange(7, volumeLevel);
     }
 
     public int getVolume() {
@@ -120,5 +123,9 @@ public class JSynth {
 
     public int getActiveOctave() {
         return activeOctave;
+    }
+
+    public int[] getOctaves(){
+        return new int[]{OCTAVE0, OCTAVE2, OCTAVE4, OCTAVE6, OCTAVE8};
     }
 }
