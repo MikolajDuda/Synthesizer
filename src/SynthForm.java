@@ -33,6 +33,8 @@ public class SynthForm {
     private JButton resetButton2;
     private JPanel sett2Panel;
     private JPanel sett1Panel;
+    private JSlider modulationSlider;
+    private JPanel modulationPanel;
     private Effect[] effects = new Effect[6];   //amount of available effects
     private int activeEffect = -1;
 
@@ -111,11 +113,19 @@ public class SynthForm {
                 effSlider1.setValue(effects[activeEffect].getValue(effects[activeEffect].getControllers()[0]));
             }
         });
+
         resetButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 effects[activeEffect].setValue(effects[activeEffect].getControllers()[1], effects[activeEffect].getDefaultValue(effects[activeEffect].getControllers()[1]));
                 effSlider2.setValue(effects[activeEffect].getValue(effects[activeEffect].getControllers()[1]));
+            }
+        });
+
+        modulationSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent changeEvent) {
+                synthesizer.getChannel().controlChange(JModulation.MODULATION, modulationSlider.getValue());
             }
         });
     }
@@ -159,6 +169,11 @@ public class SynthForm {
         slider.setMinimum(0);
         slider.setValue(synthesizer.getVolume());
 
+        //modulation slider settings
+        modulationSlider.setMaximum(127);
+        modulationSlider.setMinimum(0);
+        modulationSlider.setValue(new JModulation(synthesizer).getDefaultValue(JModulation.MODULATION));
+
         //fill boxes
         fillBoxWOctaves(octaveBox);
         fillEffectsBox(effectBox);
@@ -168,12 +183,13 @@ public class SynthForm {
         //Setting keyboard image
         icon.setIcon(new ImageIcon(System.getProperty("user.dir") + "/src/keyboard_colored.jpg"));
 
-        //hide panel w/ effects settings
+        //hide panel w/ effects and modulation settings
         effectPanel.setVisible(false);
+        modulationPanel.setVisible(false);
 
     }
 
-
+    //TODO:New list for drum instruments. Source: https://www.midi.org/specifications/item/gm-level-1-sound-set
     private void setInstruments(){
         DefaultListModel<String> model = new DefaultListModel<>();
         int num = 1;
@@ -217,32 +233,34 @@ public class SynthForm {
     private void effectBoxAction(int index, int controller){
         if (effectBox.getSelectedIndex() == index){
             activeEffect = index;
+            modulationPanel.setVisible(true);
             effSetting1.setVisible(false);
             effSetting2.setVisible(false);
             sett2Panel.setVisible(false);
-            effSlider1.setValue(effects[activeEffect].getDefaultValue(controller));
+            effSlider1.setValue(effects[activeEffect].getValue(controller));
             effSlider1.setMinimum(0);
             effSlider1.setMaximum(127);
         }
     }
 
-    
+
     private void effectBoxAction(int index, int controller1, int controller2){
         if (effectBox.getSelectedIndex() == index){
             activeEffect = index;
+            modulationPanel.setVisible(true);
             effSetting1.setVisible(true);
             effSetting2.setVisible(true);
             sett2Panel.setVisible(true);
-            effSlider1.setValue(effects[activeEffect].getDefaultValue(controller1));
+            effSlider1.setValue(effects[activeEffect].getValue(controller1));
             effSlider1.setMinimum(0);
             effSlider1.setMaximum(127);
-            effSlider2.setValue(effects[activeEffect].getDefaultValue(controller2));
+            effSlider2.setValue(effects[activeEffect].getValue(controller2));
             effSlider2.setMinimum(effects[activeEffect].getDefaultValue(controller2));
             effSlider2.setMaximum(127);
         }
     }
 
-
+//TODO: Maybe new effects? Source: https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
     private void setEffect(int select) {
         switch (select) {
             case 0:
