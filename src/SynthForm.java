@@ -33,8 +33,8 @@ public class SynthForm {
     private JButton resetButton2;
     private JPanel sett2Panel;
     private JPanel sett1Panel;
-    private Effect[] effects = new Effect[2];   //amount of available effects
-    private int activeEffect;
+    private Effect[] effects = new Effect[6];   //amount of available effects
+    private int activeEffect = -1;
 
     public SynthForm() {
         synthesizer = new JSynth();  //New Java synthesizer
@@ -86,35 +86,9 @@ public class SynthForm {
         effectBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (effectBox.getSelectedIndex() == 0){
-                    activeEffect = 0;
-                    effSetting1.setVisible(true);
-                    effSetting2.setVisible(true);
-                    sett2Panel.setVisible(true);
-                    effectLabel.setText("Vibrato");
-                    effSetting1.setText("Depth");
-                    effSetting2.setText("Delay");
-                    effSlider1.setValue(effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DEPTH));
-                    effSlider1.setMinimum(0);
-                    effSlider1.setMaximum(127);
-                    effSlider2.setValue(effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DELAY));
-                    effSlider2.setMinimum(effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DELAY));
-                    effSlider2.setMaximum(127);
-                }
-                if (effectBox.getSelectedIndex() == 1){
-                    activeEffect = 1;
-                    effectLabel.setText("Balance");
-                    effSetting1.setVisible(false);
-                    effSetting2.setVisible(false);
-                    sett2Panel.setVisible(false);
-                    effSlider1.setValue(effects[activeEffect].getDefaultValue(JBalance.BALANCE));
-                    effSlider1.setMinimum(0);
-                    effSlider1.setMaximum(127);
-                }
-                effectPanel.setVisible(true);
+                setEffect(effectBox.getSelectedIndex());
             }
         });
-
 
         effSlider1.addChangeListener(new ChangeListener() {
             @Override
@@ -146,6 +120,7 @@ public class SynthForm {
         });
     }
 
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Synthesizer");
         SynthForm s = new SynthForm();
@@ -155,16 +130,6 @@ public class SynthForm {
         frame.pack();
         frame.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),600);
         frame.setVisible(true);
-    }
-
-    private void setInstruments(){
-        DefaultListModel<String> model = new DefaultListModel<>();
-        int num = 1;
-        for (int  i = 0; i < 128; i++) {    //128 because of 128 sounds in this bank
-            model.addElement(num + ". " + synthesizer.getInstruments()[i].getName());
-            num++;
-        }
-        instrumentsList.setModel(model);
     }
 
 
@@ -208,6 +173,18 @@ public class SynthForm {
 
     }
 
+
+    private void setInstruments(){
+        DefaultListModel<String> model = new DefaultListModel<>();
+        int num = 1;
+        for (int  i = 0; i < 128; i++) {    //128 because of 128 sounds in this bank
+            model.addElement(num + ". " + synthesizer.getInstruments()[i].getName());
+            num++;
+        }
+        instrumentsList.setModel(model);
+    }
+
+
     private void fillBoxWOctaves(JComboBox<Integer> box){
         int[] tmp = new int[5];
         tmp[0] = 0;
@@ -224,7 +201,77 @@ public class SynthForm {
         effects[0] = new JVibrato(synthesizer);
         box.addItem("Balance");
         effects[1] = new JBalance(synthesizer);
+        box.addItem("Reverb");
+        effects[2] = new JReverb(synthesizer);
+        box.addItem("Tremolo");
+        effects[3] = new JTremolo(synthesizer);
+        box.addItem("Phaser");
+        effects[4] = new JPhaser(synthesizer);
+        box.addItem("Chorus");
+        effects[5] = new JChorus(synthesizer);
 
         for (Effect effect : effects) effect.setDefaultValue(); //Set default value for each effect
+    }
+
+
+    private void effectBoxAction(int index, int controller){
+        if (effectBox.getSelectedIndex() == index){
+            activeEffect = index;
+            effSetting1.setVisible(false);
+            effSetting2.setVisible(false);
+            sett2Panel.setVisible(false);
+            effSlider1.setValue(effects[activeEffect].getDefaultValue(controller));
+            effSlider1.setMinimum(0);
+            effSlider1.setMaximum(127);
+        }
+    }
+
+    
+    private void effectBoxAction(int index, int controller1, int controller2){
+        if (effectBox.getSelectedIndex() == index){
+            activeEffect = index;
+            effSetting1.setVisible(true);
+            effSetting2.setVisible(true);
+            sett2Panel.setVisible(true);
+            effSlider1.setValue(effects[activeEffect].getDefaultValue(controller1));
+            effSlider1.setMinimum(0);
+            effSlider1.setMaximum(127);
+            effSlider2.setValue(effects[activeEffect].getDefaultValue(controller2));
+            effSlider2.setMinimum(effects[activeEffect].getDefaultValue(controller2));
+            effSlider2.setMaximum(127);
+        }
+    }
+
+
+    private void setEffect(int select) {
+        switch (select) {
+            case 0:
+                effectBoxAction(effectBox.getSelectedIndex(), JVibrato.VIBRATO_DEPTH, JVibrato.VIBRATO_DELAY);
+                effectLabel.setText("Vibrato");
+                effSetting1.setText("Depth");
+                effSetting2.setText("Delay");
+                break;
+            case 1:
+                effectBoxAction(effectBox.getSelectedIndex(), JBalance.BALANCE);
+                effectLabel.setText("Balance");
+                break;
+            case 2:
+                effectBoxAction(effectBox.getSelectedIndex(), JReverb.REVERB);
+                effectLabel.setText("Reverb");
+                break;
+            case 3:
+                effectBoxAction(effectBox.getSelectedIndex(), JTremolo.TREMOLO);
+                effectLabel.setText("Tremolo");
+                break;
+            case 4:
+                effectBoxAction(effectBox.getSelectedIndex(), JPhaser.PHASER);
+                effectLabel.setText("Phaser");
+                break;
+            case 5:
+                effectBoxAction(effectBox.getSelectedIndex(), JChorus.CHORUS);
+                effectLabel.setText("Chorus");
+                break;
+        }
+        effectPanel.setVisible(true);
     }
 }
