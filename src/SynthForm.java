@@ -107,7 +107,7 @@ public class SynthForm {
                     effSetting1.setVisible(false);
                     effSetting2.setVisible(false);
                     sett2Panel.setVisible(false);
-                    effSlider1.setValue(effects[activeEffect].getDefaultValue(Balance.BALANCE));
+                    effSlider1.setValue(effects[activeEffect].getDefaultValue(JBalance.BALANCE));
                     effSlider1.setMinimum(0);
                     effSlider1.setMaximum(127);
                 }
@@ -223,7 +223,7 @@ public class SynthForm {
         box.addItem("Vibrato");
         effects[0] = new JVibrato(synthesizer);
         box.addItem("Balance");
-        effects[1] = new Balance(synthesizer);
+        effects[1] = new JBalance(synthesizer);
 
         for (Effect effect : effects) effect.setDefaultValue(); //Set default value for each effect
     }

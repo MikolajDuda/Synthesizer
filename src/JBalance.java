@@ -1,9 +1,9 @@
-public class Balance extends Effect {
+public class JBalance extends Effect {
     private JavaSynth synthesizer;
     private int defaultValue;
     public static int BALANCE = 8;
 
-    public Balance(JavaSynth synthesizer){
+    public JBalance(JavaSynth synthesizer){
         this.synthesizer = synthesizer;
     }
 
