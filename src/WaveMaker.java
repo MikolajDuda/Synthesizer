@@ -68,7 +68,6 @@ public class WaveMaker {
 
     }
 
-
     public static double getAmplitude(int i, int waveLength) {
 
         if (i >= (0.2 * waveLength) && i < (0.6 * waveLength)) {
@@ -86,7 +85,6 @@ public class WaveMaker {
                 amplitude = 0;
             }
         }
-
         return amplitude;
     }
 

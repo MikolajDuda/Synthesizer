@@ -14,7 +14,6 @@ public class Main {
         SoundMaker.playWave(wave4);
 
 
-
     }
 
 }
