@@ -1,7 +1,7 @@
 import javax.sound.midi.*;
 
 
-public class JavaSynth {
+public class JSynth {
     private Synthesizer synthesizer;
     private MidiChannel channel;
     private int channelN = 0;  //0 by default
@@ -22,7 +22,7 @@ public class JavaSynth {
             GUITAR = 24,
             ELECTRIC_GUITAR = 27,
             VIOLIN = 40,
-            HARP = 46,
+                HARP = 46,
             TIMPANI = 47,
             TRUMPET = 56,
             TROMBONE = 57,
@@ -34,7 +34,7 @@ public class JavaSynth {
 
     public final static int OCTAVE0 = 0, OCTAVE2 = 24, OCTAVE4 = 48, OCTAVE6 = 72, OCTAVE8 = 96;
 
-    public JavaSynth() {   //default settings
+    public JSynth() {   //default settings
         try {
             synthesizer = MidiSystem.getSynthesizer();
             instruments = synthesizer.getAvailableInstruments();

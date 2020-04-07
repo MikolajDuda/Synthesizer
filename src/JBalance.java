@@ -1,9 +1,9 @@
 public class JBalance extends Effect {
-    private JavaSynth synthesizer;
+    private JSynth synthesizer;
     private int defaultValue;
     public static int BALANCE = 8;
 
-    public JBalance(JavaSynth synthesizer){
+    public JBalance(JSynth synthesizer){
         this.synthesizer = synthesizer;
     }
 

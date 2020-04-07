@@ -10,7 +10,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 public class SynthForm {
-    private JavaSynth synthesizer;
+    private JSynth synthesizer;
     private Keyboard keyboard;
     private JPanel mainPanel;
     private JScrollPane scrollPanel1;
@@ -37,7 +37,7 @@ public class SynthForm {
     private int activeEffect;
 
     public SynthForm() {
-        synthesizer = new JavaSynth();  //New Java synthesizer
+        synthesizer = new JSynth();  //New Java synthesizer
         setComponentsUI();  //Some settings of visual components
         setInstruments();   //Filling list of instruments
         keyboard = new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
@@ -67,7 +67,7 @@ public class SynthForm {
         octaveBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (octaveBox.getItemCount() != 0) synthesizer.setActiveOctave((Integer) octaveBox.getSelectedItem());
+                if (octaveBox.getItemCount() != 0) synthesizer.setActiveOctave((Integer)    octaveBox.getSelectedItem());
                 synthesizer.allNotesOff();
             }
         });
@@ -98,7 +98,7 @@ public class SynthForm {
                     effSlider1.setMinimum(0);
                     effSlider1.setMaximum(127);
                     effSlider2.setValue(effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DELAY));
-                    effSlider2.setMinimum(0);
+                    effSlider2.setMinimum(effects[activeEffect].getDefaultValue(JVibrato.VIBRATO_DELAY));
                     effSlider2.setMaximum(127);
                 }
                 if (effectBox.getSelectedIndex() == 1){
@@ -177,7 +177,7 @@ public class SynthForm {
         scrollPanel1.setBackground(Color.WHITE);
         scrollPanel1.setViewportView(instrumentsList);
         instrumentsList.setLayoutOrientation(JList.VERTICAL);
-        instrumentsList.setSelectedIndex(JavaSynth.PIANO);
+        instrumentsList.setSelectedIndex(JSynth.PIANO);
         instrumentsList.setSelectionForeground(Color.BLUE);
         instrumentsList.setFont(new Font("Arial", Font.PLAIN, 12));
         instrumentsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -210,11 +210,11 @@ public class SynthForm {
 
     private void fillBoxWOctaves(JComboBox<Integer> box){
         int[] tmp = new int[5];
-        tmp[0] = JavaSynth.OCTAVE0;
-        tmp[1] = JavaSynth.OCTAVE2;
-        tmp[2] = JavaSynth.OCTAVE4;
-        tmp[3] = JavaSynth.OCTAVE6;
-        tmp[4] = JavaSynth.OCTAVE8;
+        tmp[0] = JSynth.OCTAVE0;
+        tmp[1] = JSynth.OCTAVE2;
+        tmp[2] = JSynth.OCTAVE4;
+        tmp[3] = JSynth.OCTAVE6;
+        tmp[4] = JSynth.OCTAVE8;
         for (int element : tmp) box.addItem(element);
     }
 
