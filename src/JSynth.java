@@ -2,33 +2,26 @@ import javax.sound.midi.*;
 
 
 public class JSynth {
-    private Synthesizer synthesizer;
     private MidiChannel channel;
-    private int channelN = 0;  //0 by default
     private int volume;
     public static final int MAX = 127;
     public static final int MIN = 0;
     private int activeOctave = OCTAVE4;
-    private int instrument = PIANO;
-    private int bank = 0;
+    private int instrument = 0;
     private boolean[] noteIsPlaying;
     private Instrument[] instruments;    //list of available instruments
-
-    public final static int //some basic instruments
-            PIANO = 0,
-            HARPSICHORD = 6,
-            XYLOPHONE = 13,
-            CHURCH_ORGAN = 20;
 
 
     public final static int OCTAVE0 = 0, OCTAVE2 = 24, OCTAVE4 = 48, OCTAVE6 = 72, OCTAVE8 = 96;
 
     public JSynth() {   //default settings
         try {
-            synthesizer = MidiSystem.getSynthesizer();
+            Synthesizer synthesizer = MidiSystem.getSynthesizer();
             instruments = synthesizer.getAvailableInstruments();
             synthesizer.open();
             MidiChannel[] allChannels = synthesizer.getChannels();
+            //0 by default
+            int channelN = 0;
             channel = allChannels[channelN];
             volume = channel.getController(7);
             setVolume(volume/2);
@@ -69,23 +62,13 @@ public class JSynth {
         noteIsPlaying = new boolean[127];
     }
 
-    public int getInstrument() {
-
-        return instrument;
-    }
-
     public String getInstrumentName() {
         return instruments[instrument].getName();
     }
 
     public void setInstrument(int bank, int instrument) {
         channel.programChange(bank, instrument);
-        this.bank = bank;
         this.instrument = instrument;
-    }
-
-    public void setChannel(int channelN){
-        this.channelN = channelN;
     }
 
     public MidiChannel getChannel(){

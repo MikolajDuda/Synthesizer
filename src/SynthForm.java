@@ -142,7 +142,7 @@ public class SynthForm {
         scrollPanel1.setBackground(Color.WHITE);
         scrollPanel1.setViewportView(instrumentsList);
         instrumentsList.setLayoutOrientation(JList.VERTICAL);
-        instrumentsList.setSelectedIndex(JSynth.PIANO);
+        instrumentsList.setSelectedIndex(0);
         instrumentsList.setSelectionForeground(Color.BLUE);
         instrumentsList.setFont(new Font("Arial", Font.PLAIN, 12));
         instrumentsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -240,7 +240,7 @@ public class SynthForm {
         }
     }
 
-//TODO: Maybe new effects? Source: https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
+    
     private void setEffect(int select) {
         switch (select) {
             case 0:
