@@ -1,7 +1,7 @@
 public class JTremolo extends Effect{
     private JSynth synthesizer;
     private int defaultValue;
-    public static int TREMOLO = 92;
+    public static int TREMOLO = 1;
 
     public JTremolo(JSynth synthesizer){
         this.synthesizer = synthesizer;

@@ -18,9 +18,5 @@ public class Main {
         JavaSynth x = new JavaSynth();
         System.out.println(System.getProperty("user.dir"));
  */
-
-    System.out.println(new JPhaser(new JSynth()).getValue(JPhaser.PHASER));
-    System.out.println(new JTremolo(new JSynth()).getValue(JTremolo.TREMOLO));
     }
-
 }

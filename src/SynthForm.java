@@ -11,7 +11,6 @@ import java.awt.event.MouseWheelListener;
 
 public class SynthForm {
     private JSynth synthesizer;
-    private Keyboard keyboard;
     private JPanel mainPanel;
     private JScrollPane scrollPanel1;
     private JPanel somePanel;
@@ -33,16 +32,14 @@ public class SynthForm {
     private JButton resetButton2;
     private JPanel sett2Panel;
     private JPanel sett1Panel;
-    private JSlider modulationSlider;
-    private JPanel modulationPanel;
-    private Effect[] effects = new Effect[6];   //amount of available effects
+    private Effect[] effects = new Effect[5];   //amount of available effects
     private int activeEffect = -1;
 
     public SynthForm() {
         synthesizer = new JSynth();  //New Java synthesizer
         setComponentsUI();  //Some settings of visual components
         setInstruments();   //Filling list of instruments
-        keyboard = new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
+        new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
 
 
         slider.addChangeListener(new ChangeListener() {
@@ -79,8 +76,8 @@ public class SynthForm {
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 int index = instrumentsList.getSelectedIndex();
                 synthesizer.allNotesOff();
-                synthesizer.setInstrument(0, index );
-                keyboard = new Keyboard(mainPanel, synthesizer);
+                synthesizer.setInstrument(0, index);
+                new Keyboard(mainPanel, synthesizer);
                 activeInstrument.setText(synthesizer.getInstrumentName());
             }
         });
@@ -121,13 +118,6 @@ public class SynthForm {
                 effSlider2.setValue(effects[activeEffect].getValue(effects[activeEffect].getControllers()[1]));
             }
         });
-
-        modulationSlider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent changeEvent) {
-                synthesizer.getChannel().controlChange(JModulation.MODULATION, modulationSlider.getValue());
-            }
-        });
     }
 
 
@@ -165,14 +155,9 @@ public class SynthForm {
         activeInstrument.setText(synthesizer.getInstrumentName());
 
         //Volume slider settings
-        slider.setMaximum(127);
-        slider.setMinimum(0);
+        slider.setMaximum(JSynth.MAX);
+        slider.setMinimum(JSynth.MIN);
         slider.setValue(synthesizer.getVolume());
-
-        //modulation slider settings
-        modulationSlider.setMaximum(127);
-        modulationSlider.setMinimum(0);
-        modulationSlider.setValue(new JModulation(synthesizer).getDefaultValue(JModulation.MODULATION));
 
         //fill boxes
         fillBoxWOctaves(octaveBox);
@@ -183,17 +168,16 @@ public class SynthForm {
         //Setting keyboard image
         icon.setIcon(new ImageIcon(System.getProperty("user.dir") + "/src/keyboard_colored.jpg"));
 
-        //hide panel w/ effects and modulation settings
+        //hide panel w/ effects settings
         effectPanel.setVisible(false);
-        modulationPanel.setVisible(false);
 
     }
 
-    //TODO:New list for drum instruments. Source: https://www.midi.org/specifications/item/gm-level-1-sound-set
     private void setInstruments(){
         DefaultListModel<String> model = new DefaultListModel<>();
+        instrumentsList.removeAll();
         int num = 1;
-        for (int  i = 0; i < 128; i++) {    //128 because of 128 sounds in this bank
+        for (int i = 0; i <= JSynth.MAX; i++) {    //127 because of 127 sounds in this bank
             model.addElement(num + ". " + synthesizer.getInstruments()[i].getName());
             num++;
         }
@@ -221,10 +205,8 @@ public class SynthForm {
         effects[2] = new JReverb(synthesizer);
         box.addItem("Tremolo");
         effects[3] = new JTremolo(synthesizer);
-        box.addItem("Phaser");
-        effects[4] = new JPhaser(synthesizer);
         box.addItem("Chorus");
-        effects[5] = new JChorus(synthesizer);
+        effects[4] = new JChorus(synthesizer);
 
         for (Effect effect : effects) effect.setDefaultValue(); //Set default value for each effect
     }
@@ -233,13 +215,12 @@ public class SynthForm {
     private void effectBoxAction(int index, int controller){
         if (effectBox.getSelectedIndex() == index){
             activeEffect = index;
-            modulationPanel.setVisible(true);
             effSetting1.setVisible(false);
             effSetting2.setVisible(false);
             sett2Panel.setVisible(false);
             effSlider1.setValue(effects[activeEffect].getValue(controller));
-            effSlider1.setMinimum(0);
-            effSlider1.setMaximum(127);
+            effSlider1.setMinimum(JSynth.MIN);
+            effSlider1.setMaximum(JSynth.MAX);
         }
     }
 
@@ -247,16 +228,15 @@ public class SynthForm {
     private void effectBoxAction(int index, int controller1, int controller2){
         if (effectBox.getSelectedIndex() == index){
             activeEffect = index;
-            modulationPanel.setVisible(true);
             effSetting1.setVisible(true);
             effSetting2.setVisible(true);
             sett2Panel.setVisible(true);
             effSlider1.setValue(effects[activeEffect].getValue(controller1));
-            effSlider1.setMinimum(0);
-            effSlider1.setMaximum(127);
+            effSlider1.setMinimum(JSynth.MIN);
+            effSlider1.setMaximum(JSynth.MAX);
             effSlider2.setValue(effects[activeEffect].getValue(controller2));
             effSlider2.setMinimum(effects[activeEffect].getDefaultValue(controller2));
-            effSlider2.setMaximum(127);
+            effSlider2.setMaximum(JSynth.MAX);
         }
     }
 
@@ -282,10 +262,6 @@ public class SynthForm {
                 effectLabel.setText("Tremolo");
                 break;
             case 4:
-                effectBoxAction(effectBox.getSelectedIndex(), JPhaser.PHASER);
-                effectLabel.setText("Phaser");
-                break;
-            case 5:
                 effectBoxAction(effectBox.getSelectedIndex(), JChorus.CHORUS);
                 effectLabel.setText("Chorus");
                 break;
