@@ -42,7 +42,8 @@ public class SynthForm {
         synthesizer = new JSynth();  //New Java synthesizer
         setComponentsUI();  //Some settings of visual components
         setInstruments();   //Filling list of instruments
-        keyboard = new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
+        //keyboard = new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
+        keyboard = new Keyboard(mainPanel, WaveMaker.SQUARE);
 
 
         slider.addChangeListener(new ChangeListener() {

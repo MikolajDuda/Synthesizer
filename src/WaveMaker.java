@@ -6,7 +6,7 @@ public class WaveMaker {
 
     public static int sampleRate = 44100;
     public static double amplitude = 1;
-    public static int time = 5;           // duration of sound
+    public static int time = 3;           // duration of sound
 
     public static byte[] getWave(int waveForm, double frequency) {
 
@@ -68,17 +68,18 @@ public class WaveMaker {
 
     }
 
-    public static double getAmplitude(int i, int waveLength) {
+    private static double getAmplitude(int i, int waveLength) {
 
         if (i >= (0.2 * waveLength) && i < (0.6 * waveLength)) {
             amplitude -= 0.5 * amplitude / waveLength;
-        }
+        }/*
         if (i >= (0.6 * waveLength) && i < (0.8 * waveLength)) {
             amplitude -= 6 * amplitude / waveLength;
             if (amplitude == 0) {
                 amplitude = 0;
             }
         }
+        */
         if (i >= 0.8 * waveLength) {
             amplitude -= 150 * amplitude / waveLength;
             if (amplitude == 0) {
