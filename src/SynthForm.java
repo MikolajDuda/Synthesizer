@@ -43,7 +43,14 @@ public class SynthForm {
         setComponentsUI();  //Some settings of visual components
         setInstruments();   //Filling list of instruments
         //keyboard = new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
-        keyboard = new Keyboard(mainPanel, WaveMaker.SQUARE);
+        keyboard = new Keyboard(mainPanel, WaveMaker.SINE, 1, 4, 1);    // amplitude must be between 0 and 1
+        /*TODO: zrobic w gui wybor:
+           - ksztaltu fali,
+           - oktawy(int od 1 do 4),
+           - amplitudy (double od 0 do 1),
+           - czasu (int od 1 do 6)
+           do naszego Syntezatora
+         */
 
 
         slider.addChangeListener(new ChangeListener() {
@@ -70,7 +77,8 @@ public class SynthForm {
         octaveBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (octaveBox.getItemCount() != 0) synthesizer.setActiveOctave(synthesizer.getOctaves()[octaveBox.getSelectedIndex()]);
+                if (octaveBox.getItemCount() != 0)
+                    synthesizer.setActiveOctave(synthesizer.getOctaves()[octaveBox.getSelectedIndex()]);
                 synthesizer.allNotesOff();
             }
         });
@@ -80,7 +88,7 @@ public class SynthForm {
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 int index = instrumentsList.getSelectedIndex();
                 synthesizer.allNotesOff();
-                synthesizer.setInstrument(0, index );
+                synthesizer.setInstrument(0, index);
                 keyboard = new Keyboard(mainPanel, synthesizer);
                 activeInstrument.setText(synthesizer.getInstrumentName());
             }
@@ -139,12 +147,12 @@ public class SynthForm {
         frame.setBackground(Color.GRAY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),600);
+        frame.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 600);
         frame.setVisible(true);
     }
 
 
-    private void setComponentsUI(){
+    private void setComponentsUI() {
         imagePanel.setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
         rightPanel.setBackground(Color.WHITE);
@@ -191,10 +199,10 @@ public class SynthForm {
     }
 
     //TODO:New list for drum instruments. Source: https://www.midi.org/specifications/item/gm-level-1-sound-set
-    private void setInstruments(){
+    private void setInstruments() {
         DefaultListModel<String> model = new DefaultListModel<>();
         int num = 1;
-        for (int  i = 0; i < 128; i++) {    //128 because of 128 sounds in this bank
+        for (int i = 0; i < 128; i++) {    //128 because of 128 sounds in this bank
             model.addElement(num + ". " + synthesizer.getInstruments()[i].getName());
             num++;
         }
@@ -202,7 +210,7 @@ public class SynthForm {
     }
 
 
-    private void fillBoxWOctaves(JComboBox<Integer> box){
+    private void fillBoxWOctaves(JComboBox<Integer> box) {
         int[] tmp = new int[5];
         tmp[0] = 0;
         tmp[1] = 2;
@@ -213,7 +221,7 @@ public class SynthForm {
     }
 
 
-    private void fillEffectsBox(JComboBox<String> box){
+    private void fillEffectsBox(JComboBox<String> box) {
         box.addItem("Vibrato");
         effects[0] = new JVibrato(synthesizer);
         box.addItem("Balance");
@@ -231,8 +239,8 @@ public class SynthForm {
     }
 
 
-    private void effectBoxAction(int index, int controller){
-        if (effectBox.getSelectedIndex() == index){
+    private void effectBoxAction(int index, int controller) {
+        if (effectBox.getSelectedIndex() == index) {
             activeEffect = index;
             modulationPanel.setVisible(true);
             effSetting1.setVisible(false);
@@ -245,8 +253,8 @@ public class SynthForm {
     }
 
 
-    private void effectBoxAction(int index, int controller1, int controller2){
-        if (effectBox.getSelectedIndex() == index){
+    private void effectBoxAction(int index, int controller1, int controller2) {
+        if (effectBox.getSelectedIndex() == index) {
             activeEffect = index;
             modulationPanel.setVisible(true);
             effSetting1.setVisible(true);
@@ -261,7 +269,7 @@ public class SynthForm {
         }
     }
 
-//TODO: Maybe new effects? Source: https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
+    //TODO: Maybe new effects? Source: https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
     private void setEffect(int select) {
         switch (select) {
             case 0:

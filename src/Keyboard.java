@@ -28,11 +28,13 @@ public class Keyboard {
         panel.registerKeyboardAction(actionEvent -> sound.allNotesOff(), KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
-    public Keyboard(JPanel panel, int waveForm) {
+    public Keyboard(JPanel panel, int waveForm, double amplitude, int octave, int time) {
         for (int i = 0; i < buttons.length; i++) {
             int note = i;
             panel.registerKeyboardAction(e -> {
-                byte[] wave = WaveMaker.getWave(waveForm, frequency[note]);
+                WaveMaker.setAmplitude(amplitude);
+                WaveMaker.setTime(time);
+                byte[] wave = WaveMaker.getWave(waveForm, octave * frequency[note]);
                 SoundMaker.playWave(wave);
             }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
         }

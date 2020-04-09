@@ -1,3 +1,4 @@
+import javax.management.monitor.CounterMonitor;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
@@ -9,35 +10,28 @@ public class SoundMaker {
     private static AudioFormat af = new AudioFormat(sampleRate, 16, 1, true, true);
     private static SourceDataLine line;
 
-    static {
-        try {
-            line = AudioSystem.getSourceDataLine(af);
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void playWave(byte[] wave) {
-        try {
-            line.open(af);
-            line.start();
+        Thread thread = new Thread(() -> {
+            try {
+                line = AudioSystem.getSourceDataLine(af);
+                line.open(af);
+                line.start();
 
-            writeToLine(line, wave);
+                writeToLine(line, wave);
 
-            line.drain();
-            line.close();
+                line.drain();
+                line.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
     }
 
     private static void writeToLine(SourceDataLine line, byte[] buffer) {
         line.write(buffer, 0, buffer.length);
-    }
-
-    public static SourceDataLine getLine(){
-        return line;
     }
 
 }
