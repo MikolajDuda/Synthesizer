@@ -34,9 +34,13 @@ public class SynthForm {
     private JPanel sett1Panel;
     private JComboBox<Integer> generatorBox;
     private JLabel instrumentLabel;
+    private JComboBox<Integer> timeBox;
+    private JLabel timeLabel;
+    private JPanel timeBoxPanel;
+    private JPanel effectBoxPanel;
     private Effect[] effects = new Effect[6];   //amount of available effects
     private int activeEffect = -1;
-    private int generator = 0;
+    private int generator = -1;
 
     private int wave = 0;
     private double amplitude = 0.5;     // amplitude must be between 0 and 1;
@@ -48,13 +52,6 @@ public class SynthForm {
     public SynthForm() {
         synthesizer = new JSynth();  //New Java synthesizer
         setComponentsUI();  //Some settings of visual components
-        /*TODO: zrobic w gui wybor:
-           - ksztaltu fali,
-           - oktawy(int od 1 do 4),
-           - amplitudy (double od 0 do 1),
-           - czasu (int od 1 do 6)
-           do naszego Syntezatora
-         */
 
 
         slider.addChangeListener(new ChangeListener() {
@@ -106,11 +103,12 @@ public class SynthForm {
                     synthesizer.allNotesOff();
                     synthesizer.setInstrument(0, index);
                     new Keyboard(mainPanel, synthesizer);
-                    activeInstrument.setText(synthesizer.getInstrumentName());
+                    activeInstrument.setText(instrumentsList.getSelectedValue());
                 }
 
                 if (generator == 0){
                     wave = instrumentsList.getSelectedIndex();
+                    activeInstrument.setText(instrumentsList.getSelectedValue());
                     new Keyboard(mainPanel, wave, amplitude, octave, time);
                 }
             }
@@ -126,14 +124,14 @@ public class SynthForm {
         effSlider1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                effects[activeEffect].setValue(effects[activeEffect].getControllers()[0], effSlider1.getValue());
+                effects[activeEffect].setValue(effects[activeEffect].getControllers()[0], effSlider1.getValue());   //Change first controller value
             }
         });
 
         effSlider2.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                effects[activeEffect].setValue(effects[activeEffect].getControllers()[1], effSlider2.getValue());
+                effects[activeEffect].setValue(effects[activeEffect].getControllers()[1], effSlider2.getValue());   //Change second controller value
             }
         });
 
@@ -167,6 +165,14 @@ public class SynthForm {
                 }
             }
         });
+
+        timeBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                time = (int) timeBox.getSelectedItem();
+                new Keyboard(mainPanel, wave, amplitude, octave, time);
+            }
+        });
     }
 
 
@@ -191,7 +197,6 @@ public class SynthForm {
         scrollPanel1.setBackground(Color.WHITE);
         scrollPanel1.setViewportView(instrumentsList);
         instrumentsList.setLayoutOrientation(JList.VERTICAL);
-        instrumentsList.setSelectedIndex(JSynth.PIANO);
         instrumentsList.setSelectionForeground(Color.BLUE);
         instrumentsList.setFont(new Font("Arial", Font.PLAIN, 12));
         instrumentsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -201,7 +206,7 @@ public class SynthForm {
         activeInstrument.setForeground(Color.RED);
         activeInstrument.setFont(new Font("Dubai", Font.ITALIC, 35));
         activeInstrument.setEditable(false);
-        activeInstrument.setText(synthesizer.getInstrumentName());
+        activeInstrument.setText("");
 
         //Volume slider settings
         slider.setMaximum(127);
@@ -210,10 +215,13 @@ public class SynthForm {
         //fill boxes
         fillBoxWOctaves(octaveBox);
         fillEffectsBox(effectBox);
+        fillTimeBox(timeBox);
         fillGeneratorBox(generatorBox);
+
         octaveBox.setSelectedIndex(2);  //basic octave
         effectBox.setSelectedIndex(-1); //no choice
         generatorBox.setSelectedIndex(-1);
+        generatorBox.setFocusable(false);
 
         //Setting keyboard image
         icon.setIcon(new ImageIcon(System.getProperty("user.dir") + "/src/keyboard_colored.jpg"));
@@ -250,6 +258,18 @@ public class SynthForm {
         tmp[2] = 4;
         tmp[3] = 6;
         tmp[4] = 8;
+        for (int element : tmp) box.addItem(element);
+    }
+
+
+    private void fillTimeBox(JComboBox<Integer> box) {
+        int[] tmp = new int[6];
+        tmp[0] = 1;
+        tmp[1] = 2;
+        tmp[2] = 3;
+        tmp[3] = 4;
+        tmp[4] = 5;
+        tmp[5] = 6;
         for (int element : tmp) box.addItem(element);
     }
 
@@ -340,15 +360,29 @@ public class SynthForm {
 
     private void javaGenerator(){
         rightPanel.setVisible(true);
+        timeBoxPanel.setVisible(false);
+        effectBoxPanel.setVisible(true);
+
+        instrumentsList.setSelectedIndex(0);
+
         instrumentLabel.setText("Instruments");
         setInstruments();   //Filling list of instruments
+
+        slider.setValue(synthesizer.getVolume());
     }
 
     private void ourGenerator(){
         rightPanel.setVisible(true);
-        effectBox.setVisible(false);
+        effectBoxPanel.setVisible(false);
+        timeBoxPanel.setVisible(true);
+
+        timeBox.setSelectedIndex(0);
+        instrumentsList.setSelectedIndex(0);
+        octaveBox.setSelectedIndex(2);
+
         instrumentLabel.setText("Waves");
-        slider.setValue((int) (amplitude*127));
         setWaves();
+
+        slider.setValue((int) (amplitude*127));
     }
 }
