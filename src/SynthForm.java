@@ -11,7 +11,6 @@ import java.awt.event.MouseWheelListener;
 
 public class SynthForm {
     private JSynth synthesizer;
-    private Keyboard keyboard;
     private JPanel mainPanel;
     private JScrollPane scrollPanel1;
     private JPanel somePanel;
@@ -33,17 +32,22 @@ public class SynthForm {
     private JButton resetButton2;
     private JPanel sett2Panel;
     private JPanel sett1Panel;
-    private JSlider modulationSlider;
-    private JPanel modulationPanel;
+    private JComboBox<Integer> generatorBox;
+    private JLabel instrumentLabel;
     private Effect[] effects = new Effect[6];   //amount of available effects
     private int activeEffect = -1;
+    private int generator = 0;
+
+    private int wave = 0;
+    private double amplitude = 0.5;     // amplitude must be between 0 and 1;
+    private int octave = 4;
+    private int time = 1;
+
+    private double volume;
 
     public SynthForm() {
         synthesizer = new JSynth();  //New Java synthesizer
         setComponentsUI();  //Some settings of visual components
-        setInstruments();   //Filling list of instruments
-        //keyboard = new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
-        keyboard = new Keyboard(mainPanel, WaveMaker.SINE, 1, 4, 1);    // amplitude must be between 0 and 1
         /*TODO: zrobic w gui wybor:
            - ksztaltu fali,
            - oktawy(int od 1 do 4),
@@ -56,7 +60,11 @@ public class SynthForm {
         slider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                synthesizer.setVolume(slider.getValue());
+                if (generator == 1) synthesizer.setVolume(slider.getValue());
+                if (generator == 0){
+                    amplitude = (double) slider.getValue() / 127;     // amplitude must be between 0 and 1
+                    new Keyboard(mainPanel, wave, amplitude, octave, time);
+                }
             }
         });
 
@@ -77,20 +85,34 @@ public class SynthForm {
         octaveBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (octaveBox.getItemCount() != 0)
-                    synthesizer.setActiveOctave(synthesizer.getOctaves()[octaveBox.getSelectedIndex()]);
-                synthesizer.allNotesOff();
+                if (generator == 1) {
+                    if (octaveBox.getItemCount() != 0)
+                        synthesizer.setActiveOctave(synthesizer.getOctaves()[octaveBox.getSelectedIndex()]);
+                    synthesizer.allNotesOff();
+                }
+                if (generator == 0){
+                    octave = (int) octaveBox.getSelectedItem();
+                    new Keyboard(mainPanel, wave, amplitude, octave, time);
+                }
             }
         });
 
         instrumentsList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                int index = instrumentsList.getSelectedIndex();
-                synthesizer.allNotesOff();
-                synthesizer.setInstrument(0, index);
-                keyboard = new Keyboard(mainPanel, synthesizer);
-                activeInstrument.setText(synthesizer.getInstrumentName());
+
+                if (generator == 1) {
+                    int index = instrumentsList.getSelectedIndex();
+                    synthesizer.allNotesOff();
+                    synthesizer.setInstrument(0, index);
+                    new Keyboard(mainPanel, synthesizer);
+                    activeInstrument.setText(synthesizer.getInstrumentName());
+                }
+
+                if (generator == 0){
+                    wave = instrumentsList.getSelectedIndex();
+                    new Keyboard(mainPanel, wave, amplitude, octave, time);
+                }
             }
         });
 
@@ -131,10 +153,18 @@ public class SynthForm {
             }
         });
 
-        modulationSlider.addChangeListener(new ChangeListener() {
+        generatorBox.addActionListener(new ActionListener() {
             @Override
-            public void stateChanged(ChangeEvent changeEvent) {
-                synthesizer.getChannel().controlChange(JModulation.MODULATION, modulationSlider.getValue());
+            public void actionPerformed(ActionEvent actionEvent) {
+                generator = generatorBox.getSelectedIndex();
+                if (generator == 0){
+                    new Keyboard(mainPanel, WaveMaker.SINE, amplitude, octave, time);    // amplitude must be between 0 and 1
+                    ourGenerator();
+                }
+                if (generator == 1){
+                    new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
+                    javaGenerator();
+                }
             }
         });
     }
@@ -177,25 +207,20 @@ public class SynthForm {
         slider.setMaximum(127);
         slider.setMinimum(0);
         slider.setValue(synthesizer.getVolume());
-
-        //modulation slider settings
-        modulationSlider.setMaximum(127);
-        modulationSlider.setMinimum(0);
-        modulationSlider.setValue(new JModulation(synthesizer).getDefaultValue(JModulation.MODULATION));
-
         //fill boxes
         fillBoxWOctaves(octaveBox);
         fillEffectsBox(effectBox);
+        fillGeneratorBox(generatorBox);
         octaveBox.setSelectedIndex(2);  //basic octave
-        effectBox.setSelectedIndex(-1); //lack of choice
+        effectBox.setSelectedIndex(-1); //no choice
+        generatorBox.setSelectedIndex(-1);
 
         //Setting keyboard image
         icon.setIcon(new ImageIcon(System.getProperty("user.dir") + "/src/keyboard_colored.jpg"));
 
         //hide panel w/ effects and modulation settings
         effectPanel.setVisible(false);
-        modulationPanel.setVisible(false);
-
+        rightPanel.setVisible(false);
     }
 
     //TODO:New list for drum instruments. Source: https://www.midi.org/specifications/item/gm-level-1-sound-set
@@ -209,6 +234,14 @@ public class SynthForm {
         instrumentsList.setModel(model);
     }
 
+    private void setWaves() {
+        DefaultListModel<String> model = new DefaultListModel<>();
+        model.addElement("SINE");
+        model.addElement("SQUARE");
+        model.addElement("TRIANGLE");
+        model.addElement("SAWTOOTH");
+        instrumentsList.setModel(model);
+    }
 
     private void fillBoxWOctaves(JComboBox<Integer> box) {
         int[] tmp = new int[5];
@@ -220,6 +253,11 @@ public class SynthForm {
         for (int element : tmp) box.addItem(element);
     }
 
+    private void fillGeneratorBox(JComboBox<Integer> box) {
+        int[] tmp = new int[2];
+        tmp[1] = 1;
+        for (int element : tmp) box.addItem(element);
+    }
 
     private void fillEffectsBox(JComboBox<String> box) {
         box.addItem("Vibrato");
@@ -242,7 +280,6 @@ public class SynthForm {
     private void effectBoxAction(int index, int controller) {
         if (effectBox.getSelectedIndex() == index) {
             activeEffect = index;
-            modulationPanel.setVisible(true);
             effSetting1.setVisible(false);
             effSetting2.setVisible(false);
             sett2Panel.setVisible(false);
@@ -256,7 +293,6 @@ public class SynthForm {
     private void effectBoxAction(int index, int controller1, int controller2) {
         if (effectBox.getSelectedIndex() == index) {
             activeEffect = index;
-            modulationPanel.setVisible(true);
             effSetting1.setVisible(true);
             effSetting2.setVisible(true);
             sett2Panel.setVisible(true);
@@ -300,5 +336,19 @@ public class SynthForm {
                 break;
         }
         effectPanel.setVisible(true);
+    }
+
+    private void javaGenerator(){
+        rightPanel.setVisible(true);
+        instrumentLabel.setText("Instruments");
+        setInstruments();   //Filling list of instruments
+    }
+
+    private void ourGenerator(){
+        rightPanel.setVisible(true);
+        effectBox.setVisible(false);
+        instrumentLabel.setText("Waves");
+        slider.setValue((int) (amplitude*127));
+        setWaves();
     }
 }
