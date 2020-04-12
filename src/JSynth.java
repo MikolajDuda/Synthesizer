@@ -2,44 +2,26 @@ import javax.sound.midi.*;
 
 
 public class JSynth {
-    private Synthesizer synthesizer;
     private MidiChannel channel;
-    private int channelN = 0;  //0 by default
     private int volume;
+    public static final int MAX = 127;
+    public static final int MIN = 0;
     private int activeOctave = OCTAVE4;
-    private int instrument = PIANO;
-    private int bank = 0;
+    private int instrument = 0;
     private boolean[] noteIsPlaying;
     private Instrument[] instruments;    //list of available instruments
-
-    public final static int //some basic instruments
-            PIANO = 0,
-            HARPSICHORD = 6,
-            XYLOPHONE = 13,
-            CHURCH_ORGAN = 19,
-            REED_ORGAN = 20,
-            HARMONICA = 22,
-            GUITAR = 24,
-            ELECTRIC_GUITAR = 27,
-            VIOLIN = 40,
-            HARP = 46,
-            TIMPANI = 47,
-            TRUMPET = 56,
-            TROMBONE = 57,
-            OBOE = 68,
-            FLUTE = 73,
-            BANJO = 105,
-            STEEL_DRUMS = 114;
 
 
     public final static int OCTAVE0 = 0, OCTAVE2 = 24, OCTAVE4 = 48, OCTAVE6 = 72, OCTAVE8 = 96;
 
     public JSynth() {   //default settings
         try {
-            synthesizer = MidiSystem.getSynthesizer();
+            Synthesizer synthesizer = MidiSystem.getSynthesizer();
             instruments = synthesizer.getAvailableInstruments();
             synthesizer.open();
             MidiChannel[] allChannels = synthesizer.getChannels();
+            //0 by default
+            int channelN = 0;
             channel = allChannels[channelN];
             volume = channel.getController(7);
             setVolume(volume/2);
@@ -75,20 +57,9 @@ public class JSynth {
         }
     }
 
-    public boolean isNoteOn(int noteNumber) {
-        if (noteNumber < 0 || noteNumber > 127)
-            throw new IllegalArgumentException("Midi note numbers must be in the range 0 to 127");
-        return noteIsPlaying[noteNumber + activeOctave];
-    }
-
     public void allNotesOff() {
         channel.allNotesOff();
         noteIsPlaying = new boolean[127];
-    }
-
-    public int getInstrument() {
-
-        return instrument;
     }
 
     public String getInstrumentName() {
@@ -97,16 +68,7 @@ public class JSynth {
 
     public void setInstrument(int bank, int instrument) {
         channel.programChange(bank, instrument);
-        this.bank = bank;
         this.instrument = instrument;
-    }
-
-    public void setChannel(int channelN){
-        this.channelN = channelN;
-    }
-
-    public int getChannelN(){
-        return this.channelN;
     }
 
     public MidiChannel getChannel(){
@@ -119,10 +81,6 @@ public class JSynth {
 
     public void setActiveOctave(int activeOctave) {
         this.activeOctave = activeOctave;
-    }
-
-    public int getActiveOctave() {
-        return activeOctave;
     }
 
     public int[] getOctaves(){
