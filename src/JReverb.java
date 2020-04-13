@@ -1,4 +1,4 @@
-public class JReverb extends Effect{
+public class JReverb extends JEffect {
     private JSynth synthesizer;
     private int defaultValue;
     public static int REVERB = 91;

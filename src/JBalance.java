@@ -1,4 +1,4 @@
-public class JBalance extends Effect {
+public class JBalance extends JEffect {
     private JSynth synthesizer;
     private int defaultValue;
     public static int BALANCE = 8;

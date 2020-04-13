@@ -1,4 +1,4 @@
-public class JChorus extends Effect{
+public class JChorus extends JEffect {
     private JSynth synthesizer;
     private int defaultValue;
     public static int CHORUS = 93;

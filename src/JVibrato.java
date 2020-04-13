@@ -1,4 +1,4 @@
-public class JVibrato extends Effect{
+public class JVibrato extends JEffect {
     private JSynth synthesizer;
     private int[] defaultValue = new int[2];
     public static int VIBRATO_DEPTH = 77, VIBRATO_DELAY = 78;

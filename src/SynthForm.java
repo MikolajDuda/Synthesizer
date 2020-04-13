@@ -38,7 +38,7 @@ public class SynthForm {
     private JLabel timeLabel;
     private JPanel timeBoxPanel;
     private JPanel effectBoxPanel;
-    private Effect[] effects = new Effect[5];   //amount of available effects
+    private JEffect[] effects = new JEffect[5];   //amount of available effects
     private int activeEffect = -1;
     private int generator = -1;
 
@@ -292,7 +292,7 @@ public class SynthForm {
         box.addItem("Chorus");
         effects[4] = new JChorus(synthesizer);
 
-        for (Effect effect : effects) effect.setDefaultValue(); //Set default value for each effect
+        for (JEffect effect : effects) effect.setDefaultValue(); //Set default value for each effect
     }
 
 

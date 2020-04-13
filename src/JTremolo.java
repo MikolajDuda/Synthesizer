@@ -1,4 +1,4 @@
-public class JTremolo extends Effect{
+public class JTremolo extends JEffect {
     private JSynth synthesizer;
     private int defaultValue;
     public static int TREMOLO = 1;
