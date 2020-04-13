@@ -2,12 +2,17 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+     //   System.out.println(Arrays.toString(wave));
+      // System.out.println(Arrays.toString(WaveMaker.getWave(WaveMaker.SAWTOOTH, 440, true, 5)));
+        WaveMaker.setTime(4);
+        byte[] wave = WaveMaker.getWave(WaveMaker.SAWTOOTH, 440);
+       // SoundMaker.playWave(WaveMaker.getWave(WaveMaker.SAWTOOTH, 440, true, 7));  //Try change vibratoFreq
 
-        byte[] wave = WaveMaker.getWave(WaveMaker.SINE, 440);
+
         System.out.println(Arrays.toString(wave));
-        System.out.println(Arrays.toString(WaveMaker.getWave(WaveMaker.SINE, 440, true, 5)));
-        WaveMaker.setTime(3);
-        SoundMaker.playWave(WaveMaker.getWave(WaveMaker.SINE, 440, true, 7));  //Try change vibratoFreq
+        //SoundMaker.playWave(wave);
+       // System.out.println(Arrays.toString(new Reverb().apply(wave, 1)));
+        SoundMaker.playWave(new Reverb().apply(wave, 4));
 /*
         byte[] wave2 = WaveMaker.getWave(WaveMaker.SINE, 440);
         SoundMaker.playWave(wave2);
