@@ -3,7 +3,7 @@ public class JTremolo extends JEffect {
     private int defaultValue;
     public static int TREMOLO = 1;
 
-    public JTremolo(JSynth synthesizer){
+    public JTremolo(JSynth synthesizer) {
         this.synthesizer = synthesizer;
     }
 

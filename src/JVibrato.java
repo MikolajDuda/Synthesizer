@@ -3,12 +3,12 @@ public class JVibrato extends JEffect {
     private int[] defaultValue = new int[2];
     public static int VIBRATO_DEPTH = 77, VIBRATO_DELAY = 78;
 
-    public JVibrato(JSynth synthesizer){
+    public JVibrato(JSynth synthesizer) {
         this.synthesizer = synthesizer;
     }
 
     @Override
-    public void setDefaultValue(){
+    public void setDefaultValue() {
         defaultValue[0] = synthesizer.getChannel().getController(VIBRATO_DEPTH);
         defaultValue[1] = synthesizer.getChannel().getController(VIBRATO_DELAY);
     }
@@ -20,12 +20,12 @@ public class JVibrato extends JEffect {
         }
         if (controller == VIBRATO_DELAY) {
             return defaultValue[1];
-        }else return -1;    //-1 indicate incorrect controller number
+        } else return -1;    //-1 indicate incorrect controller number
     }
 
     @Override
-    public void setValue(int controller, int value){
-        if (controller == VIBRATO_DEPTH){
+    public void setValue(int controller, int value) {
+        if (controller == VIBRATO_DEPTH) {
             synthesizer.getChannel().controlChange(VIBRATO_DEPTH, value);
         }
 
@@ -35,7 +35,7 @@ public class JVibrato extends JEffect {
     }
 
     @Override
-    public int getValue(int controller){
+    public int getValue(int controller) {
         return synthesizer.getChannel().getController(controller);
     }
 

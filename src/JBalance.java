@@ -3,7 +3,7 @@ public class JBalance extends JEffect {
     private int defaultValue;
     public static int BALANCE = 8;
 
-    public JBalance(JSynth synthesizer){
+    public JBalance(JSynth synthesizer) {
         this.synthesizer = synthesizer;
     }
 

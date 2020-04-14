@@ -3,7 +3,7 @@ public class JChorus extends JEffect {
     private int defaultValue;
     public static int CHORUS = 93;
 
-    public JChorus(JSynth synthesizer){
+    public JChorus(JSynth synthesizer) {
         this.synthesizer = synthesizer;
     }
 

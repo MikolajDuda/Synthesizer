@@ -24,7 +24,7 @@ public class JSynth {
             int channelN = 0;
             channel = allChannels[channelN];
             volume = channel.getController(7);
-            setVolume(volume/2);
+            setVolume(volume / 2);
 
         } catch (MidiUnavailableException e) {
             throw new IllegalStateException("Midi support is not available!");
@@ -71,11 +71,11 @@ public class JSynth {
         this.instrument = instrument;
     }
 
-    public MidiChannel getChannel(){
+    public MidiChannel getChannel() {
         return channel;
     }
 
-    public Instrument[] getInstruments(){
+    public Instrument[] getInstruments() {
         return instruments;
     }
 
@@ -83,7 +83,7 @@ public class JSynth {
         this.activeOctave = activeOctave;
     }
 
-    public int[] getOctaves(){
+    public int[] getOctaves() {
         return new int[]{OCTAVE0, OCTAVE2, OCTAVE4, OCTAVE6, OCTAVE8};
     }
 }

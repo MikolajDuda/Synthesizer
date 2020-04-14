@@ -58,7 +58,7 @@ public class SynthForm {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
                 if (generator == 1) synthesizer.setVolume(slider.getValue());
-                if (generator == 0){
+                if (generator == 0) {
                     amplitude = (double) slider.getValue() / 127;     // amplitude must be between 0 and 1
                     new Keyboard(mainPanel, wave, amplitude, octave, time);
                 }
@@ -87,7 +87,7 @@ public class SynthForm {
                         synthesizer.setActiveOctave(synthesizer.getOctaves()[octaveBox.getSelectedIndex()]);
                     synthesizer.allNotesOff();
                 }
-                if (generator == 0){
+                if (generator == 0 && octaveBox.getSelectedItem() != null) {
                     octave = (int) octaveBox.getSelectedItem();
                     new Keyboard(mainPanel, wave, amplitude, octave, time);
                 }
@@ -106,7 +106,7 @@ public class SynthForm {
                     activeInstrument.setText(instrumentsList.getSelectedValue());
                 }
 
-                if (generator == 0){
+                if (generator == 0) {
                     wave = instrumentsList.getSelectedIndex();
                     activeInstrument.setText(instrumentsList.getSelectedValue());
                     new Keyboard(mainPanel, wave, amplitude, octave, time);
@@ -155,13 +155,13 @@ public class SynthForm {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 generator = generatorBox.getSelectedIndex();
-                if (generator == 0){
-                    new Keyboard(mainPanel, WaveMaker.SINE, amplitude, octave, time);    // amplitude must be between 0 and 1
+                if (generator == 0) {
                     ourGenerator();
+                    new Keyboard(mainPanel, WaveMaker.SINE, amplitude, octave, time);    // amplitude must be between 0 and 1
                 }
-                if (generator == 1){
-                    new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
+                if (generator == 1) {
                     javaGenerator();
+                    new Keyboard(mainPanel, synthesizer);    //Set keyboard listener
                 }
             }
         });
@@ -176,7 +176,7 @@ public class SynthForm {
     }
 
 
-    public static void main(String[] args) {
+    public static void main() {
         JFrame frame = new JFrame("Synthesizer");
         SynthForm s = new SynthForm();
         frame.setContentPane(s.mainPanel);
@@ -188,7 +188,7 @@ public class SynthForm {
     }
 
 
-    private void setComponentsUI(){
+    private void setComponentsUI() {
         imagePanel.setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
         rightPanel.setBackground(Color.WHITE);
@@ -219,7 +219,6 @@ public class SynthForm {
         fillTimeBox(timeBox);
         fillGeneratorBox(generatorBox);
 
-        octaveBox.setSelectedIndex(2);  //basic octave
         effectBox.setSelectedIndex(-1); //no choice
         generatorBox.setSelectedIndex(-1);
         generatorBox.setFocusable(false);
@@ -232,7 +231,7 @@ public class SynthForm {
         rightPanel.setVisible(false);
     }
 
-    private void setInstruments(){
+    private void setInstruments() {
         DefaultListModel<String> model = new DefaultListModel<>();
         instrumentsList.removeAll();
         int num = 1;
@@ -252,14 +251,24 @@ public class SynthForm {
         instrumentsList.setModel(model);
     }
 
-    private void fillBoxWOctaves(JComboBox<Integer> box){
-        int[] tmp = new int[5];
-        tmp[0] = 0;
-        tmp[1] = 2;
-        tmp[2] = 4;
-        tmp[3] = 6;
-        tmp[4] = 8;
-        for (int element : tmp) box.addItem(element);
+    private void fillBoxWOctaves(JComboBox<Integer> box) {
+        box.removeAllItems();
+        if (generator == 1) {
+            int[] tmp = new int[5];
+            tmp[0] = 0;
+            tmp[1] = 2;
+            tmp[2] = 4;
+            tmp[3] = 6;
+            tmp[4] = 8;
+            for (int element : tmp) box.addItem(element);
+        }
+        if (generator == 0) {
+            int[] tmp = new int[3];
+            tmp[0] = 1;
+            tmp[1] = 3;
+            tmp[2] = 5;
+            for (int element : tmp) box.addItem(element);
+        }
     }
 
 
@@ -296,8 +305,8 @@ public class SynthForm {
     }
 
 
-    private void effectBoxAction(int index, int controller){
-        if (effectBox.getSelectedIndex() == index){
+    private void effectBoxAction(int index, int controller) {
+        if (effectBox.getSelectedIndex() == index) {
             activeEffect = index;
             effSetting1.setVisible(false);
             effSetting2.setVisible(false);
@@ -309,8 +318,8 @@ public class SynthForm {
     }
 
 
-    private void effectBoxAction(int index, int controller1, int controller2){
-        if (effectBox.getSelectedIndex() == index){
+    private void effectBoxAction(int index, int controller1, int controller2) {
+        if (effectBox.getSelectedIndex() == index) {
             activeEffect = index;
             effSetting1.setVisible(true);
             effSetting2.setVisible(true);
@@ -353,10 +362,12 @@ public class SynthForm {
         effectPanel.setVisible(true);
     }
 
-    private void javaGenerator(){
+    private void javaGenerator() {
         rightPanel.setVisible(true);
         timeBoxPanel.setVisible(false);
         effectBoxPanel.setVisible(true);
+        fillBoxWOctaves(octaveBox);
+        octaveBox.setSelectedIndex(2);  //basic octave
 
         instrumentsList.setSelectedIndex(0);
 
@@ -366,18 +377,20 @@ public class SynthForm {
         slider.setValue(synthesizer.getVolume());
     }
 
-    private void ourGenerator(){
+    private void ourGenerator() {
         rightPanel.setVisible(true);
         effectBoxPanel.setVisible(false);
+        effectPanel.setVisible(false);
         timeBoxPanel.setVisible(true);
+        fillBoxWOctaves(octaveBox);
 
         timeBox.setSelectedIndex(0);
         instrumentsList.setSelectedIndex(0);
-        octaveBox.setSelectedIndex(2);
+        octaveBox.setSelectedIndex(1);
 
         instrumentLabel.setText("Waves");
         setWaves();
 
-        slider.setValue((int) (amplitude*127));
+        slider.setValue((int) (amplitude * 127));
     }
 }

@@ -3,7 +3,7 @@ public class JReverb extends JEffect {
     private int defaultValue;
     public static int REVERB = 91;
 
-    public JReverb(JSynth synthesizer){
+    public JReverb(JSynth synthesizer) {
         this.synthesizer = synthesizer;
     }
 
