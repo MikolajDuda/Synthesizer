@@ -4,20 +4,17 @@ public class WaveMaker {
     public static final int TRIANGLE = 2;
     public static final int SAWTOOTH = 3;
 
-    public static int sampleRate = 44100;
-    public static double startAmplitude = 1;
-    public static double amplitude;
-    public static int time = 1;           // duration of sound
+    private static int sampleRate = 44100;
+    private static double startAmplitude = 1;
+    private static double amplitude;
+    private static int time = 2;           // duration of sound in seconds
     private static double angle;
     private static int vibrato = 0;
 
     public static byte[] getWave(int waveForm, double frequency) {
         WaveMaker.vibrato = 0;
         amplitude = startAmplitude;
-
         byte[] wave = new byte[time * sampleRate];
-
-        double samplingInterval = sampleRate / frequency;
 
         switch (waveForm) {
             default:
@@ -29,7 +26,7 @@ public class WaveMaker {
             case SINE:
                 for (int i = 0; i < wave.length; i++) {
                     amplitude = getAmplitude(i, wave.length);
-                    angle = ((2.0 * Math.PI * i) / (2 * samplingInterval));
+                    angle = (2.0 * Math.PI * i * frequency / sampleRate);
                     wave[i] = (byte) (amplitude * Math.sin(angle) * Byte.MAX_VALUE);
                 }
                 break;
@@ -37,7 +34,7 @@ public class WaveMaker {
             case SQUARE:
                 for (int i = 0; i < wave.length; i++) {
                     amplitude = getAmplitude(i, wave.length);
-                    angle = (2.0 * Math.PI * i) / (2 * samplingInterval);
+                    angle = (2.0 * Math.PI * i * frequency / sampleRate);
 
                     if (Math.sin(angle) >= 0.0)
                         wave[i] = (byte) (amplitude * 0.2 * Byte.MAX_VALUE);
@@ -49,18 +46,16 @@ public class WaveMaker {
             case TRIANGLE:
                 for (int i = 0; i < wave.length; i++) {
                     amplitude = getAmplitude(i, wave.length);
-                    angle = (2.0 * Math.PI * i) / (2 * samplingInterval);
+                    angle = (2.0 * Math.PI * i * frequency / sampleRate);
                     wave[i] = (byte) ((amplitude * (1.4 / Math.PI) * Math.asin(Math.sin(angle)) * Byte.MAX_VALUE));
                 }
                 break;
 
             case SAWTOOTH:
                 for (int i = 0; i < wave.length; i++) {
-
                     amplitude = getAmplitude(i, wave.length);
-
-                    angle = (2.0 * Math.PI * i) / (2 * samplingInterval);
-                    // Adding subsequent sines to create sawtooth wave
+                    angle = (2.0 * Math.PI * i * frequency / sampleRate);
+                    // Adding subsequent sines to create sawtooth wave:
                     for (int j = 1; j < 35; j++) {
                         wave[i] += (byte) (0.7 * amplitude / Math.PI * -Math.sin(j * angle) / j * Byte.MAX_VALUE);
                     }
@@ -76,16 +71,14 @@ public class WaveMaker {
 
     public static byte[] getWave(int waveForm, double frequency, boolean vibrato, double vibratoFreq) {
         if (vibrato) WaveMaker.vibrato = 1;
-        double[] timeArray = new double[time*sampleRate];
-        for (int i = 0; i < timeArray.length; i++){
-            timeArray[i] = (double) (i + 1)/sampleRate;
+        double[] timeArray = new double[time * sampleRate];
+        for (int i = 0; i < timeArray.length; i++) {
+            timeArray[i] = (double) (i + 1) / sampleRate;
         }
 
         amplitude = startAmplitude;
 
         byte[] wave = new byte[time * sampleRate];
-
-        double samplingInterval = sampleRate / frequency;
 
         switch (waveForm) {
             default:
@@ -97,7 +90,7 @@ public class WaveMaker {
             case SINE:
                 for (int i = 0; i < wave.length; i++) {
                     amplitude = getAmplitude(i, wave.length);
-                    angle = ((2.0 * Math.PI * i) / (2 * samplingInterval)) - WaveMaker.vibrato* 10 *Math.sin(2 * Math.PI*vibratoFreq * timeArray[i]);
+                    angle = (2.0 * Math.PI * i * frequency / sampleRate) - WaveMaker.vibrato * 10 * Math.sin(2 * Math.PI * vibratoFreq * timeArray[i]);
                     wave[i] = (byte) (amplitude * Math.sin(angle) * Byte.MAX_VALUE);
                 }
                 break;
@@ -105,8 +98,7 @@ public class WaveMaker {
             case SQUARE:
                 for (int i = 0; i < wave.length; i++) {
                     amplitude = getAmplitude(i, wave.length);
-                    angle = (2.0 * Math.PI * i) / (2 * samplingInterval) - WaveMaker.vibrato * 10 * Math.sin(2 * Math.PI*vibratoFreq * timeArray[i]);
-
+                    angle = (2.0 * Math.PI * i * frequency / sampleRate) - WaveMaker.vibrato * 10 * Math.sin(2 * Math.PI * vibratoFreq * timeArray[i]);
                     if (Math.sin(angle) >= 0.0)
                         wave[i] = (byte) (amplitude * 0.2 * Byte.MAX_VALUE);
                     else
@@ -117,17 +109,15 @@ public class WaveMaker {
             case TRIANGLE:
                 for (int i = 0; i < wave.length; i++) {
                     amplitude = getAmplitude(i, wave.length);
-                    angle = (2.0 * Math.PI * i) / (2 * samplingInterval) - WaveMaker.vibrato * 10 * Math.sin(2 * Math.PI*vibratoFreq * timeArray[i]);
+                    angle = (2.0 * Math.PI * i * frequency / sampleRate) - WaveMaker.vibrato * 10 * Math.sin(2 * Math.PI * vibratoFreq * timeArray[i]);
                     wave[i] = (byte) ((amplitude * (1.4 / Math.PI) * Math.asin(Math.sin(angle)) * Byte.MAX_VALUE));
                 }
                 break;
 
             case SAWTOOTH:
                 for (int i = 0; i < wave.length; i++) {
-
                     amplitude = getAmplitude(i, wave.length);
-
-                    angle = (2.0 * Math.PI * i) / (2 * samplingInterval) - WaveMaker.vibrato * 10 * Math.sin(2 * Math.PI*vibratoFreq * timeArray[i]);
+                    angle = (2.0 * Math.PI * i * frequency / sampleRate) - WaveMaker.vibrato * 10 * Math.sin(2 * Math.PI * vibratoFreq * timeArray[i]);
                     // Adding subsequent sines to create sawtooth wave
                     for (int j = 1; j < 35; j++) {
                         wave[i] += (byte) (0.7 * amplitude / Math.PI * -Math.sin(j * angle) / j * Byte.MAX_VALUE);
@@ -142,13 +132,12 @@ public class WaveMaker {
     }
 
     private static double getAmplitude(int i, int waveLength) {
-
         if (i >= (0.2 * waveLength) && i < (0.6 * waveLength)) {
             amplitude -= 0.5 * amplitude / waveLength;
         }
         if (i >= 0.8 * waveLength) {
             amplitude -= 150 * amplitude / waveLength;
-            if (amplitude == 0) {
+            if (amplitude <= 0) {
                 amplitude = 0;
             }
         }
@@ -163,7 +152,7 @@ public class WaveMaker {
         time = timeToSet;
     }
 
-    public static double getAngle(){
+    public static double getAngle() {
         return angle;
     }
 }
