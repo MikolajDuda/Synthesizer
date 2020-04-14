@@ -8,7 +8,6 @@ public class SoundMaker {
     private static AudioFormat af = new AudioFormat(sampleRate, 8, 1, true, true);
     private static SourceDataLine line;
 
-
     public static void playWave(byte[] wave) {
         Thread thread = new Thread(() -> {
             try {
@@ -31,5 +30,4 @@ public class SoundMaker {
     private static void writeToLine(SourceDataLine line, byte[] buffer) {
         line.write(buffer, 0, buffer.length);
     }
-
 }
