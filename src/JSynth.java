@@ -24,7 +24,7 @@ public class JSynth {
             int channelN = 0;
             channel = allChannels[channelN];
             volume = channel.getController(7);
-            setVolume(volume / 2);
+            setVolume(volume);
 
         } catch (MidiUnavailableException e) {
             throw new IllegalStateException("Midi support is not available!");
