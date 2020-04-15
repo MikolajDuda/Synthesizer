@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="59e6b2a2-2a6f-4579-b63b-ff0651b8435c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/zad1/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zad1/SynthForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynthForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zad1_rozwiazanie/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/SynthForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../zad1_rozwiazanie/src/SynthForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/Synthesizer/ChoiceForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/Synthesizer/ChoiceForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/Synthesizer/ChoiceForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/Synthesizer/ChoiceForm.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +84,7 @@
       <workItem from="1586379507309" duration="30000" />
       <workItem from="1586380054173" duration="286000" />
       <workItem from="1586381139695" duration="405000" />
+      <workItem from="1586946092078" duration="35000" />
     </task>
     <servers />
   </component>
@@ -93,22 +100,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1586378285913" />
-    <state width="1322" height="170" key="GridCell.Tab.0.bottom" timestamp="1586937380485">
+    <state width="1322" height="170" key="GridCell.Tab.0.bottom" timestamp="1586946145022">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="170" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586937380485" />
-    <state width="1322" height="170" key="GridCell.Tab.0.center" timestamp="1586937380485">
+    <state width="1322" height="170" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586946145022" />
+    <state width="1322" height="170" key="GridCell.Tab.0.center" timestamp="1586946145022">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="170" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586937380485" />
-    <state width="1322" height="170" key="GridCell.Tab.0.left" timestamp="1586937380484">
+    <state width="1322" height="170" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586946145022" />
+    <state width="1322" height="170" key="GridCell.Tab.0.left" timestamp="1586946145022">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="170" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586937380484" />
-    <state width="1322" height="170" key="GridCell.Tab.0.right" timestamp="1586937380485">
+    <state width="1322" height="170" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586946145022" />
+    <state width="1322" height="170" key="GridCell.Tab.0.right" timestamp="1586946145022">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="170" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586937380485" />
+    <state width="1322" height="170" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586946145022" />
     <state x="329" y="111" key="caller.chooser.dialog" timestamp="1586373533484">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

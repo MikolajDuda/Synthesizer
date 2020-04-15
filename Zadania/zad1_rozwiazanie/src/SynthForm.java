@@ -11,7 +11,7 @@ public class SynthForm {
     private JSlider slider;
     private JButton play_StopButton;
     private boolean playing = false;
-    private String names[] = new String[]{"play", "stop"};
+    private String[] names = new String[]{"play", "stop"};
 
     public SynthForm() {
         synthesizer = new JSynth();
@@ -40,6 +40,7 @@ public class SynthForm {
 
     private void setComponentsUI(){
         mainPanel.setBackground(Color.WHITE);
+        play_StopButton.setFocusable(false);
         slider.setBackground(Color.WHITE);
         slider.setValue(synthesizer.getVolume());
         slider.setMinimum(JSynth.MIN);
@@ -47,7 +48,7 @@ public class SynthForm {
     }
 
     private void play() {
-       Thread t = new Thread(new Runnable() {
+       new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -59,13 +60,12 @@ public class SynthForm {
                     e.printStackTrace();
                 }
             }
-        });
-       t.start();
+        }).start();
     }
 
 
     private void changeName(String name){
-        if (name == names[0]){
+        if (name.equals(names[0])){
             play_StopButton.setText(names[1]);
         }else
             play_StopButton.setText(names[0]);
