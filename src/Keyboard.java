@@ -13,9 +13,9 @@ public class Keyboard {
     };
 
     private final double[] frequency = new double[]{
-            //from C3 to B4 - HIGHER OCTAVES WILL BE THESE FREQUENCIES MULTIPLIED BY INTEGER
+            //from C2 to B3 - HIGHER OCTAVES WILL BE THESE FREQUENCIES MULTIPLIED BY INTEGER
+            65.405, 69.295, 73.415, 77.78, 82.405, 87.305, 92.5, 98.0, 103.825, 110.0, 116.54, 123.47,
             130.81, 138.59, 146.83, 155.56, 164.81, 174.61, 185.00, 196.00, 207.65, 220.00, 233.08, 246.94,
-            261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392.00, 415.30, 440.00, 466.16, 493.88
     };
 
     public Keyboard(JPanel panel, JSynth sound) {
