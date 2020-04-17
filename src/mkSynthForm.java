@@ -47,8 +47,7 @@ public class mkSynthForm {
     public mkSynthForm(JFrame frame) {
         setComponentsUI();  //Some settings of visual components
         new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
-
-
+        
         slider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
@@ -77,7 +76,6 @@ public class mkSynthForm {
             }
         });
 
-
         wavesList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
@@ -87,7 +85,6 @@ public class mkSynthForm {
             }
         });
 
-        // TODO: ogarnąć effectBox
         effectBox.addActionListener(actionEvent -> setEffect(effectBox.getSelectedIndex()));
 
         effSlider1.addChangeListener(changeEvent -> {
