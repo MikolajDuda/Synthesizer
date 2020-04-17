@@ -1,5 +1,5 @@
 public class Tremolo {
-    private static int sampleRate = 44100;
+    private final static int sampleRate = 44100;
     private static double value;
 
     protected byte[] getWave(byte[] wave, double modulationFrequency, double modulationDepth) {
