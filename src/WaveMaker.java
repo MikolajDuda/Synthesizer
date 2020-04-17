@@ -4,7 +4,7 @@ public class WaveMaker {
     public static final int TRIANGLE = 2;
     public static final int SAWTOOTH = 3;
 
-    private static int sampleRate = 44100;
+    private static final int sampleRate = 44100;
     private static double startAmplitude = 1;
     private static double amplitude;
     private static int time = 2;           // duration of sound in seconds
@@ -15,12 +15,6 @@ public class WaveMaker {
         byte[] wave = new byte[time * sampleRate];
 
         switch (waveForm) {
-            default:
-                for (int i = 0; i < wave.length; i++) {
-                    wave[i] = (byte) 0;
-                }
-                break;
-
             case SINE:
                 for (int i = 0; i < wave.length; i++) {
                     amplitude = getAmplitude(i, wave.length);
@@ -76,12 +70,6 @@ public class WaveMaker {
         byte[] wave = new byte[time * sampleRate];
 
         switch (waveForm) {
-            default:
-                for (int i = 0; i < wave.length; i++) {
-                    wave[i] = (byte) 0;
-                }
-                break;
-
             case SINE:
                 for (int i = 0; i < wave.length; i++) {
                     amplitude = getAmplitude(i, wave.length);

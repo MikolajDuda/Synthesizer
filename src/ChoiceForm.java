@@ -44,7 +44,7 @@ public class ChoiceForm {
         mkSynthButton.setText("M&K Synthesizer");
         mkSynthButton.setBackground(Color.BLUE);
         mkSynthButton.setForeground(Color.WHITE);
-        mkSynthButton.setFont(new Font("Arial", Font.PLAIN, 12));
+        mkSynthButton.setFont(new Font("Arial", Font.BOLD, 12));
         mkSynthButton.setFocusable(false);
     }
 }
