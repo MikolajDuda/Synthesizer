@@ -2,6 +2,7 @@ import javax.sound.midi.*;
 
 
 public class JSynth {
+    Synthesizer synthesizer;
     private MidiChannel channel;
     private int volume;
     public static final int MAX = 127;
@@ -16,7 +17,7 @@ public class JSynth {
 
     public JSynth() {   //default settings
         try {
-            Synthesizer synthesizer = MidiSystem.getSynthesizer();
+            synthesizer = MidiSystem.getSynthesizer();
             instruments = synthesizer.getAvailableInstruments();
             synthesizer.open();
             MidiChannel[] allChannels = synthesizer.getChannels();

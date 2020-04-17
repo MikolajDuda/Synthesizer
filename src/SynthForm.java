@@ -91,6 +91,7 @@ public class SynthForm {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                close();
                 ChoiceForm.main();
                 frame.dispose();
             }
@@ -256,5 +257,10 @@ public class SynthForm {
                 break;
         }
         effectPanel.setVisible(true);
+    }
+
+    private void close(){
+        this.synthesizer.allNotesOff();
+        this.synthesizer = null;
     }
 }
