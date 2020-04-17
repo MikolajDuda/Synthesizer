@@ -1,7 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SynthForm {
+    private JFrame frame;
     private JSynth synthesizer;
     private JPanel mainPanel;
     private JScrollPane scrollPanel1;
@@ -26,10 +29,12 @@ public class SynthForm {
     private JPanel sett1Panel;
     private JLabel instrumentLabel;
     private JPanel effectBoxPanel;
+    private JButton returnButton;
     private JEffect[] effects = new JEffect[5];   //amount of available effects
     private int activeEffect = -1;
 
-    public SynthForm() {
+    public SynthForm(JFrame frame) {
+        this.frame = frame;
         synthesizer = new JSynth();  //New Java synthesizer
         setComponentsUI();  //Some settings of visual components
         new Keyboard(mainPanel, synthesizer);
@@ -82,12 +87,20 @@ public class SynthForm {
             effects[activeEffect].setValue(effects[activeEffect].getControllers()[1], effects[activeEffect].getDefaultValue(effects[activeEffect].getControllers()[1]));
             effSlider2.setValue(effects[activeEffect].getValue(effects[activeEffect].getControllers()[1]));
         });
+
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChoiceForm.main();
+                frame.dispose();
+            }
+        });
     }
 
 
     public static void main() {
         JFrame frame = new JFrame("M&K Synthesizer");
-        frame.setContentPane(new SynthForm().mainPanel);
+        frame.setContentPane(new SynthForm(frame).mainPanel);
         frame.setBackground(Color.GRAY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -100,6 +113,11 @@ public class SynthForm {
         imagePanel.setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
         rightPanel.setBackground(Color.WHITE);
+
+        //reset button settings
+        returnButton.setBackground(Color.RED);
+        returnButton.setFocusable(false);
+        returnButton.requestFocus(false);
 
         //list settings
         scrollPanel1.setBackground(Color.WHITE);
