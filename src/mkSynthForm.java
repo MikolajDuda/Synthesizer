@@ -51,7 +51,7 @@ public class mkSynthForm {
         slider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                amplitude = (double) (slider.getValue() / 100);   //thresholding
+                amplitude = (double) slider.getValue() / 100;   //thresholding
                 new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
             }
         });
