@@ -2,7 +2,12 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 public class Keyboard {
-    JSynth sound = new JSynth();    //synthesizer with default settings
+    public final static int NONE = 0;
+    public final static int TREMOLO = 1;
+    public final static int VIBRATO = 2;
+
+    //JSynth sound = new JSynth();    //synthesizer with default settings
+
 
     private int[] buttons = new int[]{  //piano keys
             KeyEvent.VK_E, KeyEvent.VK_4, KeyEvent.VK_R, KeyEvent.VK_5, KeyEvent.VK_T, KeyEvent.VK_Y, KeyEvent.VK_7, KeyEvent.VK_U, KeyEvent.VK_8, KeyEvent.VK_I, KeyEvent.VK_9, KeyEvent.VK_O
@@ -16,8 +21,7 @@ public class Keyboard {
     };
 
     public Keyboard(JPanel panel, JSynth sound) {
-        if (sound != null) this.sound = sound;
-
+        //if (sound != null) this.sound = sound;
         for (int i = 0; i < buttons.length; i++) {  //listeners for all piano keys
             int note = i;
             panel.registerKeyboardAction(e -> {
@@ -28,15 +32,47 @@ public class Keyboard {
         panel.registerKeyboardAction(actionEvent -> sound.allNotesOff(), KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
-    public Keyboard(JPanel panel, int waveForm, double amplitude, int octave, int time) {
-        for (int i = 0; i < buttons.length; i++) {
-            int note = i;
-            panel.registerKeyboardAction(e -> {
-                WaveMaker.setAmplitude(amplitude);
-                WaveMaker.setTime(time);
-                byte[] wave = WaveMaker.getWave(waveForm, octave * frequency[note]);
-                SoundMaker.playWave(wave);
-            }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+    public Keyboard(JPanel panel, int waveForm, double amplitude, int octave, int time, int chosenEffect, double modulationFrequency, double modulationDepth) {
+
+        WaveMaker.setAmplitude(amplitude);
+        WaveMaker.setTime(time);
+
+        switch (chosenEffect) {
+            default:
+                for (int i = 0; i < buttons.length; i++) {
+                    int note = i;
+                    panel.registerKeyboardAction(e -> {
+                        byte[] wave = WaveMaker.getWave(waveForm, octave * frequency[note]);
+                        SoundMaker.playWave(wave);
+                    }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+                }
+
+            case NONE:
+                for (int i = 0; i < buttons.length; i++) {
+                    int note = i;
+                    panel.registerKeyboardAction(e -> {
+                        byte[] wave = WaveMaker.getWave(waveForm, octave * frequency[note]);
+                        SoundMaker.playWave(wave);
+                    }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+                }
+
+            case TREMOLO:
+                for (int i = 0; i < buttons.length; i++) {
+                    int note = i;
+                    panel.registerKeyboardAction(e -> {
+                        byte[] wave = new Tremolo().getWave(WaveMaker.getWave(waveForm, octave * frequency[note]), modulationFrequency, modulationDepth);
+                        SoundMaker.playWave(wave);
+                    }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+                }
+
+            case VIBRATO:
+                for (int i = 0; i < buttons.length; i++) {
+                    int note = i;
+                    panel.registerKeyboardAction(e -> {
+                        byte[] wave = WaveMaker.getWave(waveForm, octave * frequency[note], modulationFrequency);
+                        SoundMaker.playWave(wave);
+                    }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+                }
         }
     }
 }

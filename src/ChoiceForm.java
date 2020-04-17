@@ -29,7 +29,7 @@ public class ChoiceForm {
     }
 
     private void onMKSynthButton() {
-
+        mkSynthForm.main();
     }
 
     private void setJavaButton() {
