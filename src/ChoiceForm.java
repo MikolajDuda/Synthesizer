@@ -5,8 +5,10 @@ public class ChoiceForm {
     private JButton javaButton;
     private JButton mkSynthButton;
     private JPanel mainPanel;
+    private JFrame frame;
 
-    public ChoiceForm() {
+    public ChoiceForm(JFrame frame) {
+        this.frame = frame;
         setJavaButton();
         setMkSynthButton();
         mainPanel.setBackground(Color.DARK_GRAY);
@@ -17,7 +19,7 @@ public class ChoiceForm {
 
     public static void main() {
         JFrame frame = new JFrame("ChoiceForm");
-        frame.setContentPane(new ChoiceForm().mainPanel);
+        frame.setContentPane(new ChoiceForm(frame).mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 200);
@@ -26,10 +28,12 @@ public class ChoiceForm {
 
     private void onJavaButton() {
         SynthForm.main();
+        frame.dispose();
     }
 
     private void onMKSynthButton() {
-
+        //mkSynth main
+        frame.dispose();
     }
 
     private void setJavaButton() {
