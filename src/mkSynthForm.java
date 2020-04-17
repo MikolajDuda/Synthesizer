@@ -32,6 +32,7 @@ public class mkSynthForm {
     private JPanel sett2Panel;
     private JLabel waveLabel;
     private JPanel effectBoxPanel;
+    private JButton returnButton;
 
     private int wave = WaveMaker.SINE;
     private double amplitude = 0.5;     // amplitude must be between 0 and 1;
@@ -43,7 +44,7 @@ public class mkSynthForm {
     private double modulationDepth = 0;
 
 
-    public mkSynthForm() {
+    public mkSynthForm(JFrame frame) {
         setComponentsUI();  //Some settings of visual components
         new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
 
@@ -110,12 +111,20 @@ public class mkSynthForm {
             modulationDepth = (double) effSlider2.getValue() / 100;     // thresholding
             new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
         });
+
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ChoiceForm.main();
+                frame.dispose();
+            }
+        });
     }
 
 
     public static void main() {
         JFrame frame = new JFrame("M&K Synthesizer");
-        frame.setContentPane(new mkSynthForm().mainPanel);
+        frame.setContentPane(new mkSynthForm(frame).mainPanel);
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -128,6 +137,11 @@ public class mkSynthForm {
         imagePanel.setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
         rightPanel.setBackground(Color.WHITE);
+
+        //reset button settings
+        returnButton.setBackground(Color.RED);
+        returnButton.setFocusable(false);
+        returnButton.requestFocus(false);
 
         //list settings
         scrollPanel1.setBackground(Color.WHITE);
@@ -157,7 +171,7 @@ public class mkSynthForm {
 
         effectBox.setSelectedIndex(0);          // None
         octaveBox.setSelectedIndex(1);          //basic octave
-        wavesList.setSelectedIndex(0);    //SINE
+        wavesList.setSelectedIndex(0);           //SINE
 
         waveLabel.setText("Waves");
 
