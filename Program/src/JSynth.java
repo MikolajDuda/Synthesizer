@@ -95,7 +95,6 @@ public class JSynth {
     /**
      * Get instrument name
      *
-     *
      * @return name of active instrument (type: String)
      */
     public String getInstrumentName() {

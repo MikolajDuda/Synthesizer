@@ -80,6 +80,7 @@ public class SynthForm {
 
     /**
      * Change button text
+     *
      * @param text new text
      */
     private void changeText(String text) {

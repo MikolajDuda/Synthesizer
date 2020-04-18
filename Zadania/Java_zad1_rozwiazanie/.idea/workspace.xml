@@ -4,25 +4,9 @@
     <list default="true" id="86515683-47db-4ff2-901d-8244d40cbfcf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../Program/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Program/src/JSynth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/JSynth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/JSynth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/zad2/SynthForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zad2/SynthForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/JSynth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/JSynth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/SynthForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +41,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Java_zad2" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -101,6 +85,7 @@
       <workItem from="1586951573489" duration="81000" />
       <workItem from="1587235504299" duration="272000" />
       <workItem from="1587235826474" duration="495000" />
+      <workItem from="1587238072136" duration="16000" />
     </task>
     <servers />
   </component>
@@ -112,10 +97,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="488" y="72" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1586947649230" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1586949644568">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1587238086419">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586949644568" />
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587238086419" />
     <state width="1322" height="172" key="GridCell.Tab.0.bottom" timestamp="1587235777039">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

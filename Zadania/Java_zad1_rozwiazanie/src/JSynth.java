@@ -31,6 +31,7 @@ public class JSynth {
 
     /**
      * Start playing selected note
+     *
      * @param noteNumber number of note (type: integer, range from 0 to 127)
      */
     public void noteOn(int noteNumber) {
@@ -41,6 +42,7 @@ public class JSynth {
 
     /**
      * Change instrument
+     *
      * @param instrument instrument number
      */
     public void setInstrument(int instrument) {
@@ -51,6 +53,7 @@ public class JSynth {
 
     /**
      * Mute selected note
+     *
      * @param noteNumber number of note (type: integer, range from 0 to 127)
      */
     public void noteOff(int noteNumber) {
@@ -59,6 +62,7 @@ public class JSynth {
 
     /**
      * Get instrument name
+     *
      * @return name of active instrument (type: String)
      */
     public String getInstrumentName() {

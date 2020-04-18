@@ -4,25 +4,12 @@
     <list default="true" id="59e6b2a2-2a6f-4579-b63b-ff0651b8435c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../Program/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Program/src/JSynth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/JSynth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/JSynth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/out/production/zad2/SynthForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/out/production/zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/out/production/zad2/SynthForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/SynthForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_zad2/JSynth.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_zad2/JSynth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_zad2/SynthForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_zad2/SynthForm$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_zad2/SynthForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSynth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/SynthForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +46,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="359" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Java_zad1_rozwiazanie" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Java_zad2_rozwiazanie" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -103,6 +90,7 @@
       <workItem from="1586951558098" duration="250000" />
       <workItem from="1586951821752" duration="7000" />
       <workItem from="1587235790626" duration="530000" />
+      <workItem from="1587238089772" duration="19000" />
     </task>
     <servers />
   </component>
@@ -118,10 +106,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1586378285913" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1587235823376">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1587238107375">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587235823376" />
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587238107375" />
     <state width="1322" height="170" key="GridCell.Tab.0.bottom" timestamp="1587236320972">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

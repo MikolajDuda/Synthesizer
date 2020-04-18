@@ -33,6 +33,7 @@ public class JSynth {
     /**
      * Change volume
      * See https://en.scratch-wiki.info/wiki/MIDI_Notes
+     *
      * @param volume new volume value (type: integer, range from 0 to 127)
      */
     public void setVolume(int volume) { //Nie brakuje czegoś?
@@ -43,6 +44,7 @@ public class JSynth {
 
     /**
      * Get volume value
+     *
      * @return volume (type: integer, range from 0 to 127)
      */
     public int getVolume() {
@@ -51,6 +53,7 @@ public class JSynth {
 
     /**
      * Start playing selected note
+     *
      * @param noteNumber number of note (type: integer, range from 0 to 127)
      */
     public void noteOn(int noteNumber) {
@@ -61,6 +64,7 @@ public class JSynth {
 
     /**
      * Change instrument
+     *
      * @param instrument instrument number
      */
     public void setInstrument(int instrument) {
@@ -69,6 +73,7 @@ public class JSynth {
 
     /**
      * Mute selected note
+     *
      * @param noteNumber number of note (type: integer, range from 0 to 127)
      */
     public void noteOff(int noteNumber) {

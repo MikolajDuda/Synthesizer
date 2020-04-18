@@ -4,20 +4,10 @@
     <list default="true" id="7132b570-4642-456b-842e-0038fac2a271" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../Program/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Program/src/JSynth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/JSynth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/JSynth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/out/production/zad2/SynthForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/out/production/zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/out/production/zad2/SynthForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/SynthForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/JSynth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/JSynth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad2/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/src/JSynth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -99,6 +89,7 @@
       <workItem from="1586951563443" duration="191000" />
       <workItem from="1586951834069" duration="13000" />
       <workItem from="1587235796320" duration="522000" />
+      <workItem from="1587238110872" duration="17000" />
     </task>
     <servers />
   </component>
