@@ -239,7 +239,7 @@ public class SynthForm {
     }
 
     /**
-     * Settings of effect panel. Amount and value of visible sliders and description depends on chosen effect
+     * Settings for effect panel. Amount and value of visible sliders and descriptions depends on chosen effect
      *
      * @param select number of selected effect
      */
