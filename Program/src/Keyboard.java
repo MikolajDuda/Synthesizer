@@ -22,6 +22,7 @@ public class Keyboard {
 
     /**
      * Apply listeners for all 'piano' keys. Furthermore add listener for space key to mute all sounds
+     *
      * @param panel JPanel instance for which listeners are applied
      * @param sound JSynth instance from which sounds will play
      */

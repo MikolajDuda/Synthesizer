@@ -41,6 +41,7 @@ public class JSynth {
 
     /**
      * Change volume
+     *
      * @param volumeLevel new volume value (type: integer, range from 0 to 127)
      */
     public void setVolume(int volumeLevel) {
@@ -52,6 +53,7 @@ public class JSynth {
 
     /**
      * Get volume value
+     *
      * @return volume (type: integer, range from 0 to 127)
      */
     public int getVolume() {
@@ -60,6 +62,7 @@ public class JSynth {
 
     /**
      * Start playing selected note
+     *
      * @param noteNumber number of note (type: integer, range from 0 to 127)
      */
     public void noteOn(int noteNumber) {
@@ -71,6 +74,7 @@ public class JSynth {
 
     /**
      * Mute selected note
+     *
      * @param noteNumber number of note (type: integer, range from 0 to 127)
      */
     public void noteOff(int noteNumber) {
@@ -90,6 +94,8 @@ public class JSynth {
 
     /**
      * Get instrument name
+     *
+     *
      * @return name of active instrument (type: String)
      */
     public String getInstrumentName() {
@@ -98,7 +104,8 @@ public class JSynth {
 
     /**
      * Change instrument
-     * @param bank number of SoundBank
+     *
+     * @param bank       number of SoundBank
      * @param instrument instrument number
      */
     public void setInstrument(int bank, int instrument) {
@@ -108,6 +115,7 @@ public class JSynth {
 
     /**
      * Get active channel
+     *
      * @return active channel (type: MidiChannel)
      */
     public MidiChannel getChannel() {
@@ -116,6 +124,7 @@ public class JSynth {
 
     /**
      * Get list of all available instruments
+     *
      * @return array of instruments (type: Instrument[])
      */
     public Instrument[] getInstruments() {
@@ -124,17 +133,19 @@ public class JSynth {
 
     /**
      * Set octave
+     *
      * @param activeOctave new octave (type: integer, available value = {0,24,48,72,96})
      */
     public void setActiveOctave(int activeOctave) {
         if (activeOctave == OCTAVE0 || activeOctave == OCTAVE2 || activeOctave == OCTAVE4
                 || activeOctave == OCTAVE6 || activeOctave == OCTAVE8)
-        this.activeOctave = activeOctave;
+            this.activeOctave = activeOctave;
         else throw new IllegalArgumentException("Wrong octave");
     }
 
     /**
      * Get active octave
+     *
      * @return octave (type: integer, available value = {0,24,48,72,96})
      */
     public int[] getOctaves() {
@@ -144,7 +155,7 @@ public class JSynth {
     /**
      * Close synthesizer
      */
-    public void close(){
+    public void close() {
         synthesizer.close();
     }
 }
