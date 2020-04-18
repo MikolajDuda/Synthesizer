@@ -74,3 +74,11 @@ public class Prezentacja {
         }
     }
 }
+/*
+Bibliografia:
+
+https://docs.oracle.com/javase/tutorial/sound/sampled-overview.html
+https://www.ibm.com/developerworks/library/it/it-0801art38/
+https://www.midi.org/
+
+ */

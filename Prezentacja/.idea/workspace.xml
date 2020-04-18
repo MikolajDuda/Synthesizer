@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb43af77-342d-4aed-9b2f-90e2c44aaddd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad2/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad2/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad2_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad2_rozwiazanie/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Prezentacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Prezentacja.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
