@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59e6b2a2-2a6f-4579-b63b-ff0651b8435c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Program/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Program/src/JSynth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSynth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynthForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,21 +14,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="C:\Users\Dawid\Desktop\Synthesizer\Zadania\Java_zad2\.idea" />
-      </set>
-    </option>
-  </component>
   <component name="ProjectId" id="1aZgU4jpa8zZFKTWGwReQiWMret" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -81,10 +74,11 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1587238068976">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="651" y="169" key="FileChooserDialogImpl" timestamp="1587239573642">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587238068976" />
+    <state x="651" y="169" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587239573642" />
     <state width="1322" height="174" key="GridCell.Tab.0.bottom" timestamp="1587235778979">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

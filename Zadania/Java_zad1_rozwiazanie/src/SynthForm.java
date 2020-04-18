@@ -34,7 +34,7 @@ public class SynthForm {
                 synthesizer.setInstrument(0);   //Ustawiamy instrument
                 play(); //Gramy
 
-                changeInstrName();  //Ta funkcja zmienia nazwę przycisku na nazwę aktualnego instrumentu
+                changeInstrName();
             }
         });
     }

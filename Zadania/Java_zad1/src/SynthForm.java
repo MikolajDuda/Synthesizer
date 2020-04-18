@@ -28,7 +28,7 @@ public class SynthForm {
                 //Your code
 
                 play();
-                changeInstrName();  //Ta funkcja zmienia nazwę przycisku na nazwę aktualnego instrumentu
+                changeInstrName();
             }
         });
     }

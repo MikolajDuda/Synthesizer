@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7132b570-4642-456b-842e-0038fac2a271" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Program/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Program/src/JSynth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/JSynth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1_rozwiazanie/src/SynthForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java_zad2/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/src/JSynth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynthForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,26 +20,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="C:\Users\Dawid\Desktop\Synthesizer\Zadania\zad1_rozwiazanie\.idea" />
-      </set>
-    </option>
-  </component>
   <component name="ProjectId" id="1aH2W71lfE1GilQ3EtjwvfYD8sR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="141" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Prezentacja" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -109,10 +100,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1586378307025" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1586951565662">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="651" y="169" key="FileChooserDialogImpl" timestamp="1587239904269">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586951565662" />
+    <state x="651" y="169" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587239904269" />
     <state width="1322" height="174" key="GridCell.Tab.0.bottom" timestamp="1587236319941">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

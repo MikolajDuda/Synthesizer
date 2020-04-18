@@ -47,7 +47,6 @@ public class JSynth {
      */
     public void setInstrument(int instrument) {
         channel.programChange(0, instrument);
-        //Zapisanie nazwy wybranego instrumentu
         instrumentName = synthesizer.getAvailableInstruments()[instrument].getName();
     }
 

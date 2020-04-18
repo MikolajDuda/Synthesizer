@@ -66,7 +66,7 @@ public class SynthForm {
                 try {
                     while (playing) {
                         synthesizer.noteOn(note);   //Note of A4
-                        Thread.sleep(4000); //4s
+                        Thread.sleep(4000);       //4s
                         playing = !playing;
                         changeText(play_StopButton.getText());
                         synthesizer.noteOff(note);
