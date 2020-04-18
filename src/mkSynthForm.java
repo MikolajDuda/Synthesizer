@@ -1,11 +1,5 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class mkSynthForm {
     private JPanel mainPanel;
@@ -47,49 +41,46 @@ public class mkSynthForm {
     public mkSynthForm(JFrame frame) {
         setComponentsUI();  //Some settings of visual components
         new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
-        
-        slider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent changeEvent) {
-                amplitude = (double) slider.getValue() / 100;   //thresholding
+
+        slider.addChangeListener(changeEvent -> {
+            amplitude = (double) slider.getValue() / 100;   //thresholding
+            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+        });
+
+        octaveBox.addActionListener(actionEvent -> {
+            if (octaveBox.getSelectedItem() != null) {
+                octave = (int) octaveBox.getSelectedItem();
                 new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
             }
         });
 
-        octaveBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (octaveBox.getSelectedItem() != null) {
-                    octave = (int) octaveBox.getSelectedItem();
-                    new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
-                }
-            }
-        });
-
-        timeBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (timeBox.getSelectedItem() != null) {
-                    time = (int) timeBox.getSelectedItem();
-                    new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
-                }
-            }
-        });
-
-        wavesList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                wave = wavesList.getSelectedIndex();
-                activeWave.setText(wavesList.getSelectedValue());
+        timeBox.addActionListener(actionEvent -> {
+            if (timeBox.getSelectedItem() != null) {
+                time = (int) timeBox.getSelectedItem();
                 new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
             }
+        });
+
+        wavesList.addListSelectionListener(listSelectionEvent -> {
+            wave = wavesList.getSelectedIndex();
+            activeWave.setText(wavesList.getSelectedValue());
+            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
         });
 
         effectBox.addActionListener(actionEvent -> setEffect(effectBox.getSelectedIndex()));
 
         effSlider1.addChangeListener(changeEvent -> {
-            modulationFrequency = (double) effSlider1.getValue() / 5;   // thresholding
-            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+            switch (chosenEffect) {
+                case Keyboard.TREMOLO:
+                    modulationFrequency = (double) effSlider1.getValue() / 5;   // thresholding - modulationFrequency ratio between 0 and 20 Hz
+                    new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+                    break;
+
+                case Keyboard.VIBRATO:
+                    modulationFrequency = (double) effSlider1.getValue() / 10;   // thresholding - modulationFrequency ratio between 0 and 10 Hz
+                    new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+                    break;
+            }
         });
 
         effSlider2.addChangeListener(changeEvent -> {
@@ -109,12 +100,9 @@ public class mkSynthForm {
             new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
         });
 
-        returnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                ChoiceForm.main();
-                frame.dispose();
-            }
+        returnButton.addActionListener(actionEvent -> {
+            ChoiceForm.main();
+            frame.dispose();
         });
     }
 
@@ -256,12 +244,14 @@ public class mkSynthForm {
 
             case Keyboard.VIBRATO:
                 chosenEffect = effects[select];
+                if (modulationFrequency > 10)
+                    modulationFrequency /= 2;
 
                 effectPanel.setVisible(true);
                 effSetting1.setVisible(true);
                 effSetting2.setVisible(false);
                 sett2Panel.setVisible(false);
-                effSlider1.setValue((int) (modulationFrequency * 5));   // dealing with thresholding
+                effSlider1.setValue((int) (modulationFrequency * 10));   // dealing with thresholding
                 effSlider1.setMinimum(0);
                 effSlider1.setMaximum(100);
                 effectLabel.setText("Vibrato");
