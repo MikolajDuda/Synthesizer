@@ -11,10 +11,16 @@ public class JSynth {
     private int instrument = 0; //Piano
     private boolean[] noteIsPlaying;
     private Instrument[] instruments;    //list of available instruments
+    public final static int
+            OCTAVE0 = 0,
+            OCTAVE2 = 24,
+            OCTAVE4 = 48,
+            OCTAVE6 = 72,
+            OCTAVE8 = 96;    //Octaves and their Midi counterparts
 
-
-    public final static int OCTAVE0 = 0, OCTAVE2 = 24, OCTAVE4 = 48, OCTAVE6 = 72, OCTAVE8 = 96;    //Octaves and their Midi counterparts
-
+    /**
+     * Get synthesizer from Midi system, open it and upload its subsystems
+     */
     public JSynth() {   //default settings
         try {
             synthesizer = MidiSystem.getSynthesizer();
@@ -35,7 +41,7 @@ public class JSynth {
 
     /**
      * Change volume
-     * @param volumeLevel new volume value (integer, range from 0 to 127)
+     * @param volumeLevel new volume value (type: integer, range from 0 to 127)
      */
     public void setVolume(int volumeLevel) {
         if (volumeLevel < 0 || volumeLevel > 127)
@@ -46,12 +52,16 @@ public class JSynth {
 
     /**
      * Get volume value
-     * @return volume (integer, range from 0 to 127)
+     * @return volume (type: integer, range from 0 to 127)
      */
     public int getVolume() {
         return volume;
     }
 
+    /**
+     * Start playing selected note
+     * @param noteNumber number of note (type: integer, range from 0 to 127)
+     */
     public void noteOn(int noteNumber) {
         if (noteNumber < 0 || noteNumber > 127) //https://en.scratch-wiki.info/wiki/MIDI_Notes
             throw new IllegalArgumentException("Midi note numbers must be in the range 0 to 127");
@@ -61,7 +71,7 @@ public class JSynth {
 
     /**
      * Mute selected note
-     * @param noteNumber number of note (integer, range from 0 to 127)
+     * @param noteNumber number of note (type: integer, range from 0 to 127)
      */
     public void noteOff(int noteNumber) {
         if ((noteNumber + activeOctave) >= 0 && (noteNumber + activeOctave) <= 127 && noteIsPlaying[noteNumber + activeOctave]) {

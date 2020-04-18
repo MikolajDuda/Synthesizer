@@ -43,7 +43,9 @@ public class SynthForm {
         frame.setVisible(true);
     }
 
-
+    /**
+     * Default GUI settings
+     */
     private void setComponentsUI() {
         mainPanel.setBackground(Color.WHITE);
         play_StopButton.setFocusable(false);
@@ -52,21 +54,16 @@ public class SynthForm {
         play_StopButton.setText("Play");
     }
 
-
+    /**
+     * Play note
+     */
     private void play() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    synthesizer.noteOn(note);   //Note of A4
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        synthesizer.noteOn(note);   //Note of A4
     }
 
+    /**
+     * Set playing instrument name into button
+     */
     private void changeInstrName() {
         instrumentButton.setText(synthesizer.getInstrumentName());
     }

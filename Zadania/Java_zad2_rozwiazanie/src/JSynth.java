@@ -12,6 +12,9 @@ public class JSynth {
     public static final int MAX = 127;
     public static final int MIN = 0;
 
+    /**
+     * Get synthesizer from Midi system, open it and upload its subsystems
+     */
     public JSynth() {
 
         try {
@@ -27,28 +30,48 @@ public class JSynth {
         }
     }
 
-    public void setVolume(int volume) {    //https://en.scratch-wiki.info/wiki/MIDI_Notes
+    /**
+     * Change volume
+     * See https://en.scratch-wiki.info/wiki/MIDI_Notes
+     * @param volume new volume value (type: integer, range from 0 to 127)
+     */
+    public void setVolume(int volume) {
         if (volume < 0 || volume > 127)
             throw new IllegalArgumentException("Midi volume level must be in the range 0 to 127");
         this.volume = volume;
         channel.controlChange(7, volume);
     }
 
+    /**
+     * Get volume value
+     * @return volume (type: integer, range from 0 to 127)
+     */
     public int getVolume() {
         return volume;
     }
 
+    /**
+     * Start playing selected note
+     * @param noteNumber number of note (type: integer, range from 0 to 127)
+     */
     public void noteOn(int noteNumber) {
         if (noteNumber < 0 || noteNumber > 127)
             throw new IllegalArgumentException("Midi note numbers must be in the range 0 to 127");
         channel.noteOn(noteNumber, volume);
     }
 
-
+    /**
+     * Change instrument
+     * @param instrument instrument number
+     */
     public void setInstrument(int instrument) {
         channel.programChange(0, instrument);
     }
 
+    /**
+     * Mute selected note
+     * @param noteNumber number of note (type: integer, range from 0 to 127)
+     */
     public void noteOff(int noteNumber) {
         channel.noteOff(noteNumber);
     }

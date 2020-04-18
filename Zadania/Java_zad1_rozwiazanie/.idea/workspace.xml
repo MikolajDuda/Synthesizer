@@ -2,73 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86515683-47db-4ff2-901d-8244d40cbfcf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2/src/JSynth.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/JSynth.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/SynthForm.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/.idea/dictionaries/Dawid.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/JSynth.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/SynthForm$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/SynthForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/SynthForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/out/production/zad1/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/src/SynthForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1/zad1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/.idea/dictionaries/Dawid.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/JSynth.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/SynthForm$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/SynthForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/out/production/zad1_rozwiazanie/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/src/SynthForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynthForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zad1_rozwiazanie/zad1_rozwiazanie.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Program/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Program/src/JSynth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/JSynth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/JSynth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/out/production/Java_zad2/SynthForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/JSynth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad1/src/SynthForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zad2/SynthForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zad2/SynthForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSynth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynthForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/JSynth.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/JSynth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/out/production/Java_zad2/SynthForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad2/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/src/JSynth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2/src/SynthForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/JSynth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_zad2_rozwiazanie/src/SynthForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,6 +99,8 @@
       <workItem from="1586949640884" duration="110000" />
       <workItem from="1586950714791" duration="724000" />
       <workItem from="1586951573489" duration="81000" />
+      <workItem from="1587235504299" duration="272000" />
+      <workItem from="1587235826474" duration="495000" />
     </task>
     <servers />
   </component>
@@ -160,22 +116,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586949644568" />
-    <state width="1322" height="172" key="GridCell.Tab.0.bottom" timestamp="1586951653686">
+    <state width="1322" height="172" key="GridCell.Tab.0.bottom" timestamp="1587235777039">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="172" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586951653686" />
-    <state width="1322" height="172" key="GridCell.Tab.0.center" timestamp="1586951653685">
+    <state width="1322" height="172" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587235777039" />
+    <state width="1322" height="172" key="GridCell.Tab.0.center" timestamp="1587235777039">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="172" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586951653685" />
-    <state width="1322" height="172" key="GridCell.Tab.0.left" timestamp="1586951653685">
+    <state width="1322" height="172" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587235777039" />
+    <state width="1322" height="172" key="GridCell.Tab.0.left" timestamp="1587235777039">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="172" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586951653685" />
-    <state width="1322" height="172" key="GridCell.Tab.0.right" timestamp="1586951653686">
+    <state width="1322" height="172" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587235777039" />
+    <state width="1322" height="172" key="GridCell.Tab.0.right" timestamp="1587235777039">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="172" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586951653686" />
+    <state width="1322" height="172" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587235777039" />
     <state width="1322" height="216" key="GridCell.Tab.1.bottom" timestamp="1586951528568">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

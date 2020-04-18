@@ -27,7 +27,7 @@ public class SynthForm {
 
         play_StopButton.addActionListener(actionEvent -> {
             playing = !playing;
-            changeName(play_StopButton.getText());
+            changeText(play_StopButton.getText());
             if (playing) play();
         });
     }
@@ -42,7 +42,9 @@ public class SynthForm {
         frame.setVisible(true);
     }
 
-
+    /**
+     * Default GUI settings
+     */
     private void setComponentsUI() {
         mainPanel.setBackground(Color.WHITE);
         play_StopButton.setFocusable(false);
@@ -52,6 +54,9 @@ public class SynthForm {
         slider.setMaximum(JSynth.MAX);
     }
 
+    /**
+     * Play one note for 4 seconds and update button text
+     */
     private void play() {
         new Thread(new Runnable() {
             @Override
@@ -61,7 +66,7 @@ public class SynthForm {
                         synthesizer.noteOn(note);   //Note of A4
                         Thread.sleep(4000); //4s
                         playing = !playing;
-                        changeName(play_StopButton.getText());
+                        changeText(play_StopButton.getText());
                         synthesizer.noteOff(note);
                     }
                 } catch (InterruptedException e) {
@@ -71,8 +76,12 @@ public class SynthForm {
         }).start();
     }
 
-    private void changeName(String name) {
-        if (name.equals(names[0])) {
+    /**
+     * Change button text
+     * @param text new text
+     */
+    private void changeText(String text) {
+        if (text.equals(names[0])) {
             play_StopButton.setText(names[1]);
         } else
             play_StopButton.setText(names[0]);
