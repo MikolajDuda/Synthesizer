@@ -35,10 +35,11 @@ public class SynthForm {
         setComponentsUI();  //Some settings of visual components
         new Keyboard(mainPanel, synthesizer);
 
+        //Listeners:
 
-        slider.addChangeListener(changeEvent -> synthesizer.setVolume(slider.getValue()));
+        slider.addChangeListener(changeEvent -> synthesizer.setVolume(slider.getValue()));  //volume slider
 
-        mainPanel.addMouseWheelListener(mouseWheelEvent -> {
+        mainPanel.addMouseWheelListener(mouseWheelEvent -> {    //MouseWheel
             if (mouseWheelEvent.getWheelRotation() > 0) {
                 slider.setValue(slider.getValue() - 2);
             }
@@ -49,13 +50,13 @@ public class SynthForm {
             synthesizer.setVolume(slider.getValue());
         });
 
-        octaveBox.addActionListener(actionEvent -> {
+        octaveBox.addActionListener(actionEvent -> {    //box w/ octaves
             if (octaveBox.getItemCount() != 0)
                 synthesizer.setActiveOctave(synthesizer.getOctaves()[octaveBox.getSelectedIndex()]);
             synthesizer.allNotesOff();
         });
 
-        instrumentsList.addListSelectionListener(listSelectionEvent -> {
+        instrumentsList.addListSelectionListener(listSelectionEvent -> {    //list of instruments
 
             int index = instrumentsList.getSelectedIndex();
             synthesizer.allNotesOff();
@@ -64,27 +65,27 @@ public class SynthForm {
             activeInstrument.setText(instrumentsList.getSelectedValue());
         });
 
-        effectBox.addActionListener(actionEvent -> setEffect(effectBox.getSelectedIndex()));
+        effectBox.addActionListener(actionEvent -> setEffect(effectBox.getSelectedIndex())); //box w/ effects
 
-        effSlider1.addChangeListener(changeEvent -> {
-            effects[activeEffect].setValue(effects[activeEffect].getControllers()[0], effSlider1.getValue());   //Change first controller value
+        effSlider1.addChangeListener(changeEvent -> {   //first effect controller slider
+            effects[activeEffect].setValue(effects[activeEffect].getControllers()[0], effSlider1.getValue());
         });
 
-        effSlider2.addChangeListener(changeEvent -> {
+        effSlider2.addChangeListener(changeEvent -> {   //second effect controller slider
             effects[activeEffect].setValue(effects[activeEffect].getControllers()[1], effSlider2.getValue());   //Change second controller value
         });
 
-        resetButton1.addActionListener(actionEvent -> {
+        resetButton1.addActionListener(actionEvent -> { //first effect controller reset button
             effects[activeEffect].setValue(effects[activeEffect].getControllers()[0], effects[activeEffect].getDefaultValue(effects[activeEffect].getControllers()[0]));
             effSlider1.setValue(effects[activeEffect].getValue(effects[activeEffect].getControllers()[0]));
         });
 
-        resetButton2.addActionListener(actionEvent -> {
+        resetButton2.addActionListener(actionEvent -> { //second effect controller reset button
             effects[activeEffect].setValue(effects[activeEffect].getControllers()[1], effects[activeEffect].getDefaultValue(effects[activeEffect].getControllers()[1]));
             effSlider2.setValue(effects[activeEffect].getValue(effects[activeEffect].getControllers()[1]));
         });
 
-        returnButton.addActionListener(actionEvent -> {
+        returnButton.addActionListener(actionEvent -> { //Close this frame and start ChoiceForm
             close();
             ChoiceForm.main();
             frame.dispose();
@@ -102,7 +103,9 @@ public class SynthForm {
         frame.setVisible(true);
     }
 
-
+    /**
+     * Default GUI settings
+     */
     private void setComponentsUI() {
         imagePanel.setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
@@ -134,8 +137,8 @@ public class SynthForm {
         slider.setValue(synthesizer.getVolume());
 
         //fill boxes
-        fillOctavesBox(octaveBox);
-        fillEffectsBox(effectBox);
+        fillOctavesBox();
+        fillEffectsBox();
         setInstruments();   //Filling list of instruments
 
         effectBox.setSelectedIndex(-1); //no choice
@@ -155,9 +158,11 @@ public class SynthForm {
         imagePanel.setVisible(true);
     }
 
+    /**
+     * Add instruments names into instrumentsList
+     */
     private void setInstruments() {
         DefaultListModel<String> model = new DefaultListModel<>();
-        instrumentsList.removeAll();
         int num = 1;
         for (int i = 0; i <= JSynth.MAX; i++) {    //127 because of 127 sounds in this bank
             model.addElement(num + ". " + synthesizer.getInstruments()[i].getName());
@@ -166,94 +171,110 @@ public class SynthForm {
         instrumentsList.setModel(model);
     }
 
-    private void fillOctavesBox(JComboBox<Integer> box) {
-        box.removeAllItems();
+    /**
+     * Fill octaveBox with octaves
+     */
+    private void fillOctavesBox() {
         int[] tmp = new int[5];
         tmp[0] = 0;
         tmp[1] = 2;
         tmp[2] = 4;
         tmp[3] = 6;
         tmp[4] = 8;
-        for (int element : tmp) box.addItem(element);
+        for (int element : tmp) octaveBox.addItem(element);
     }
 
-
-    private void fillEffectsBox(JComboBox<String> box) {
-        box.removeAllItems();
-        box.addItem("Vibrato");
+    /**
+     * Fill effectBox with effects
+     */
+    private void fillEffectsBox() {
+        effectBox.addItem("Vibrato");
         effects[0] = new JVibrato(synthesizer);
-        box.addItem("Balance");
+        effectBox.addItem("Balance");
         effects[1] = new JBalance(synthesizer);
-        box.addItem("Reverb");
+        effectBox.addItem("Reverb");
         effects[2] = new JReverb(synthesizer);
-        box.addItem("Tremolo");
+        effectBox.addItem("Tremolo");
         effects[3] = new JTremolo(synthesizer);
-        box.addItem("Chorus");
+        effectBox.addItem("Chorus");
         effects[4] = new JChorus(synthesizer);
 
         for (JEffect effect : effects) effect.setDefaultValue(); //Set default value for each effect
     }
 
-
-    private void effectBoxAction(int index, int controller) {
-        if (effectBox.getSelectedIndex() == index) {
-            activeEffect = index;
-            effSetting1.setVisible(false);
-            effSetting2.setVisible(false);
-            sett2Panel.setVisible(false);
-            effSlider1.setValue(effects[activeEffect].getValue(controller));
-            effSlider1.setMinimum(JSynth.MIN);
-            effSlider1.setMaximum(JSynth.MAX);
-        }
+    /**
+     * Some effects are supported by only one controller. This function shows
+     * only one slider effect with default values and updates actualEffect variable
+     *
+     * @param controller controller number
+     */
+    private void effectBoxAction(int controller) {
+        activeEffect = effectBox.getSelectedIndex();
+        effSetting1.setVisible(false);
+        effSetting2.setVisible(false);
+        sett2Panel.setVisible(false);
+        effSlider1.setValue(effects[activeEffect].getValue(controller));
+        effSlider1.setMinimum(JSynth.MIN);
+        effSlider1.setMaximum(JSynth.MAX);
     }
 
-
-    private void effectBoxAction(int index, int controller1, int controller2) {
-        if (effectBox.getSelectedIndex() == index) {
-            activeEffect = index;
-            effSetting1.setVisible(true);
-            effSetting2.setVisible(true);
-            sett2Panel.setVisible(true);
-            effSlider1.setValue(effects[activeEffect].getValue(controller1));
-            effSlider1.setMinimum(JSynth.MIN);
-            effSlider1.setMaximum(JSynth.MAX);
-            effSlider2.setValue(effects[activeEffect].getValue(controller2));
-            effSlider2.setMinimum(effects[activeEffect].getDefaultValue(controller2));
-            effSlider2.setMaximum(JSynth.MAX);
-        }
+    /**
+     * Function for effects supported by two controllers. This function shows
+     * two slider effect with default values and updates actualEffect variable
+     *
+     * @param controller1 first controller number
+     * @param controller2 second controller number
+     */
+    private void effectBoxAction(int controller1, int controller2) {
+        activeEffect = effectBox.getSelectedIndex();
+        effSetting1.setVisible(true);
+        effSetting2.setVisible(true);
+        sett2Panel.setVisible(true);
+        effSlider1.setValue(effects[activeEffect].getValue(controller1));
+        effSlider1.setMinimum(JSynth.MIN);
+        effSlider1.setMaximum(JSynth.MAX);
+        effSlider2.setValue(effects[activeEffect].getValue(controller2));
+        effSlider2.setMinimum(effects[activeEffect].getDefaultValue(controller2));
+        effSlider2.setMaximum(JSynth.MAX);
     }
 
-
+    /**
+     * Settings of effect panel. Amount and value of visible sliders and description depends on chosen effect
+     *
+     * @param select number of selected effect
+     */
     private void setEffect(int select) {
         switch (select) {
             case 0:
-                effectBoxAction(effectBox.getSelectedIndex(), JVibrato.VIBRATO_DEPTH, JVibrato.VIBRATO_DELAY);
+                effectBoxAction(JVibrato.VIBRATO_DEPTH, JVibrato.VIBRATO_DELAY);
                 effectLabel.setText("Vibrato");
                 effSetting1.setText("Depth");
                 effSetting2.setText("Delay");
                 break;
             case 1:
-                effectBoxAction(effectBox.getSelectedIndex(), JBalance.BALANCE);
+                effectBoxAction(JBalance.BALANCE);
                 effectLabel.setText("Balance");
                 break;
             case 2:
-                effectBoxAction(effectBox.getSelectedIndex(), JReverb.REVERB);
+                effectBoxAction(JReverb.REVERB);
                 effectLabel.setText("Reverb");
                 break;
             case 3:
-                effectBoxAction(effectBox.getSelectedIndex(), JTremolo.TREMOLO);
+                effectBoxAction(JTremolo.TREMOLO);
                 effectLabel.setText("Tremolo");
                 break;
             case 4:
-                effectBoxAction(effectBox.getSelectedIndex(), JChorus.CHORUS);
+                effectBoxAction(JChorus.CHORUS);
                 effectLabel.setText("Chorus");
                 break;
         }
         effectPanel.setVisible(true);
     }
 
+    /**
+     * This function disables all functionality provided by MIDI
+     */
     private void close() {
-        this.synthesizer.allNotesOff();
-        this.synthesizer = null;
+        synthesizer.close();
     }
 }

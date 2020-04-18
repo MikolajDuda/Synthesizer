@@ -26,16 +26,25 @@ public class ChoiceForm {
         frame.setVisible(true);
     }
 
+    /**
+     * Close this frame and start SynthForm
+     */
     private void onJavaButton() {
         SynthForm.main();
         frame.dispose();
     }
 
+    /**
+     * Close this frame and start MKSynthForm
+     */
     private void onMKSynthButton() {
         mkSynthForm.main();
         frame.dispose();
     }
 
+    /**
+     * Settings of JavaButton
+     */
     private void setJavaButton() {
         javaButton.setText("Java Synthesizer");
         javaButton.setBackground(Color.RED);
@@ -44,6 +53,9 @@ public class ChoiceForm {
         javaButton.setFocusable(false);
     }
 
+    /**
+     * Settings of MKSYnthButton
+     */
     private void setMkSynthButton() {
         mkSynthButton.setText("M&K Synthesizer");
         mkSynthButton.setBackground(Color.BLUE);

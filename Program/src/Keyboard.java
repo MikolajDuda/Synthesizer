@@ -6,7 +6,9 @@ public class Keyboard {
     public final static int TREMOLO = 1;
     public final static int VIBRATO = 2;
 
-
+    /**
+     * Keyboard buttons which suit piano keys
+     */
     private final int[] buttons = new int[]{  //piano keys
             KeyEvent.VK_E, KeyEvent.VK_4, KeyEvent.VK_R, KeyEvent.VK_5, KeyEvent.VK_T, KeyEvent.VK_Y, KeyEvent.VK_7, KeyEvent.VK_U, KeyEvent.VK_8, KeyEvent.VK_I, KeyEvent.VK_9, KeyEvent.VK_O
             , KeyEvent.VK_X, KeyEvent.VK_D, KeyEvent.VK_C, KeyEvent.VK_F, KeyEvent.VK_V, KeyEvent.VK_B, KeyEvent.VK_H, KeyEvent.VK_N, KeyEvent.VK_J, KeyEvent.VK_M, KeyEvent.VK_K, KeyEvent.VK_COMMA
@@ -18,6 +20,11 @@ public class Keyboard {
             130.81, 138.59, 146.83, 155.56, 164.81, 174.61, 185.00, 196.00, 207.65, 220.00, 233.08, 246.94,
     };
 
+    /**
+     * Apply listeners for all 'piano' keys. Furthermore add listener for space key to mute all sounds
+     * @param panel JPanel instance for which listeners are applied
+     * @param sound JSynth instance from which sounds will play
+     */
     public Keyboard(JPanel panel, JSynth sound) {
         for (int i = 0; i < buttons.length; i++) {  //listeners for all piano keys
             int note = i;
