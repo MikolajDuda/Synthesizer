@@ -5,7 +5,7 @@ public class ChoiceForm {
     private JButton javaButton;
     private JButton mkSynthButton;
     private JPanel mainPanel;
-    private JFrame frame;
+    private final JFrame frame;
 
     public ChoiceForm(JFrame frame) {
         this.frame = frame;

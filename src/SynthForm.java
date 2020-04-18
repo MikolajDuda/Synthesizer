@@ -1,10 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SynthForm {
-    private JFrame frame;
     private JSynth synthesizer;
     private JPanel mainPanel;
     private JScrollPane scrollPanel1;
@@ -30,11 +27,10 @@ public class SynthForm {
     private JLabel instrumentLabel;
     private JPanel effectBoxPanel;
     private JButton returnButton;
-    private JEffect[] effects = new JEffect[5];   //amount of available effects
+    private final JEffect[] effects = new JEffect[5];   //amount of available effects
     private int activeEffect = -1;
 
     public SynthForm(JFrame frame) {
-        this.frame = frame;
         synthesizer = new JSynth();  //New Java synthesizer
         setComponentsUI();  //Some settings of visual components
         new Keyboard(mainPanel, synthesizer);
@@ -88,13 +84,10 @@ public class SynthForm {
             effSlider2.setValue(effects[activeEffect].getValue(effects[activeEffect].getControllers()[1]));
         });
 
-        returnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                close();
-                ChoiceForm.main();
-                frame.dispose();
-            }
+        returnButton.addActionListener(actionEvent -> {
+            close();
+            ChoiceForm.main();
+            frame.dispose();
         });
     }
 
@@ -259,7 +252,7 @@ public class SynthForm {
         effectPanel.setVisible(true);
     }
 
-    private void close(){
+    private void close() {
         this.synthesizer.allNotesOff();
         this.synthesizer = null;
     }
