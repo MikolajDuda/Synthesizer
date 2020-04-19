@@ -4,8 +4,8 @@ import javax.sound.sampled.SourceDataLine;
 
 
 public class SoundMaker {
-    private static int sampleRate = 44100;
-    private static AudioFormat af = new AudioFormat(sampleRate, 8, 1, true, true);
+    private static final int sampleRate = 44100;
+    private static final AudioFormat af = new AudioFormat(sampleRate, 8, 1, true, true);
     private static SourceDataLine line;
 
     /**
