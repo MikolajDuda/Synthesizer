@@ -1,6 +1,16 @@
 public class Tremolo {
     private final static int sampleRate = 44100;
 
+    /*
+        TODO: Zad 4
+         Przetestuj działanie efektu Tremolo w M&K Synthesizer. Na pierwszy rzut ucha wydaje się, że wszystko
+         działa dobrze. Ustaw Volume na maksymalną wartość i przetestuj działanie Tremolo na falach Sine i Triangle.
+         Teraz wyraźnie słychać zniekształcenia dźwięku. Nie chcemy tego. Zastanów się co może to powodować,
+         popraw kod i przetestuj teraz działanie Tremolo. Jeśli udało się zniwelować zniekształcenia dźwięku,
+         przejdź do następnego zadania.
+         Wskazówka: nie trzeba modyfikować żadnej klasy oprócz Tremolo.
+     */
+
     /**
      * Apply on wave Tremolo effect and return wave.
      *
@@ -15,9 +25,8 @@ public class Tremolo {
         for (int i = 0; i < wave.length; i++) {
             value = ((wave[i] * (1 + modulationDepth * Math.sin(2 * Math.PI * i * modulationFrequency / sampleRate)))
                     / (Byte.MAX_VALUE * (1 + modulationDepth)));      // thresholding
-            wave[i] = (byte) (value * Byte.MAX_VALUE);  
+            wave[i] = (byte) (value * Byte.MAX_VALUE);
         }
         return wave;
     }
-
 }
