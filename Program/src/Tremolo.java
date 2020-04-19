@@ -16,7 +16,7 @@ public class Tremolo {
         for (int i = 0; i < wave.length; i++) {
             value = ((wave[i] * (1 + modulationDepth * Math.sin(2 * Math.PI * i * modulationFrequency / sampleRate)))
                     / (Byte.MAX_VALUE * (1 + modulationDepth)));      // thresholding
-            wave[i] = (byte) (value * Byte.MAX_VALUE);
+            wave[i] = (byte) (value * Byte.MAX_VALUE);  
         }
         return wave;
     }
