@@ -14,6 +14,9 @@ public class Keyboard {
             , KeyEvent.VK_X, KeyEvent.VK_D, KeyEvent.VK_C, KeyEvent.VK_F, KeyEvent.VK_V, KeyEvent.VK_B, KeyEvent.VK_H, KeyEvent.VK_N, KeyEvent.VK_J, KeyEvent.VK_M, KeyEvent.VK_K, KeyEvent.VK_COMMA
     };
 
+    /**
+     * Frequencies for WaveMaker which suit proper Keyboard buttons
+     */
     private final double[] frequency = new double[]{
             //from C2 to B3 - HIGHER OCTAVES WILL BE THESE FREQUENCIES MULTIPLIED BY INTEGER
             65.405, 69.295, 73.415, 77.78, 82.405, 87.305, 92.5, 98.0, 103.825, 110.0, 116.54, 123.47,
@@ -37,6 +40,19 @@ public class Keyboard {
         panel.registerKeyboardAction(actionEvent -> sound.allNotesOff(), KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
+    /**
+     * Set amplitude, time and octave at WaveMaker.
+     * Based on chosen effect apply listeners for all 'piano' keys and play sound with proper effect.
+     *
+     * @param panel               JPanel instance for which listeners are applied
+     * @param waveForm            Integer which tells what kind of waveForm to play
+     * @param amplitude           Double which tells how high amplitude of the wave should be
+     * @param octave              Integer which tells what octave should be played
+     * @param time                Integer which tells how long wave should last
+     * @param chosenEffect        Integer which tells what effect should be applied on wave
+     * @param modulationFrequency Double which describes frequency of the modulation
+     * @param modulationDepth     Double which describes depth of the modulation
+     */
     public Keyboard(JPanel panel, int waveForm, double amplitude, int octave, int time, int chosenEffect, double modulationFrequency, double modulationDepth) {
         WaveMaker.setAmplitude(amplitude);
         WaveMaker.setTime(time);

@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb43af77-342d-4aed-9b2f-90e2c44aaddd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/src/JSynth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/src/JSynth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad1_rozwiazanie/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad2/src/SynthForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad2/src/SynthForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zadania/Java_zad2_rozwiazanie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadania/Java_zad2_rozwiazanie/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="cb43af77-342d-4aed-9b2f-90e2c44aaddd" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +29,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Program" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
@@ -85,10 +74,11 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1586953277442">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="651" y="169" key="FileChooserDialogImpl" timestamp="1587293097908">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586953277442" />
+    <state x="651" y="169" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587293097908" />
     <state width="1322" height="174" key="GridCell.Tab.0.bottom" timestamp="1586953279243">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -34,42 +34,45 @@ public class mkSynthForm {
     private int time = 1;               // int >= 1
     private final int[] effects = {Keyboard.NONE, Keyboard.TREMOLO, Keyboard.VIBRATO};
     private int chosenEffect = effects[0];
-    private double modulationFrequency = 0;
-    private double modulationDepth = 0;
+    private double modulationFrequency = 5;
+    private double modulationDepth = 0.5;
 
 
     public mkSynthForm(JFrame frame) {
-        setComponentsUI();  //Some settings of visual components
+        setComponentsUI();  // some settings of visual components
+
+        // run new Keyboard which starts proper Wave and SoundMaker
         new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
 
-        slider.addChangeListener(changeEvent -> {
-            amplitude = (double) slider.getValue() / 100;   //thresholding
+
+        slider.addChangeListener(changeEvent -> {           // volume slider
+            amplitude = (double) slider.getValue() / 100;   // thresholding
             new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
         });
 
-        octaveBox.addActionListener(actionEvent -> {
+        octaveBox.addActionListener(actionEvent -> {        // box with octaves
             if (octaveBox.getSelectedItem() != null) {
                 octave = (int) octaveBox.getSelectedItem();
                 new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
             }
         });
 
-        timeBox.addActionListener(actionEvent -> {
+        timeBox.addActionListener(actionEvent -> {          // box with time
             if (timeBox.getSelectedItem() != null) {
                 time = (int) timeBox.getSelectedItem();
                 new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
             }
         });
 
-        wavesList.addListSelectionListener(listSelectionEvent -> {
+        wavesList.addListSelectionListener(listSelectionEvent -> {  //list of waves
             wave = wavesList.getSelectedIndex();
             activeWave.setText(wavesList.getSelectedValue());
             new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
         });
 
-        effectBox.addActionListener(actionEvent -> setEffect(effectBox.getSelectedIndex()));
+        effectBox.addActionListener(actionEvent -> setEffect(effectBox.getSelectedIndex()));    // box with effects
 
-        effSlider1.addChangeListener(changeEvent -> {
+        effSlider1.addChangeListener(changeEvent -> {       // first effect control slider
             switch (chosenEffect) {
                 case Keyboard.TREMOLO:
                     modulationFrequency = (double) effSlider1.getValue() / 5;   // thresholding - modulationFrequency ratio between 0 and 20 Hz
@@ -83,24 +86,24 @@ public class mkSynthForm {
             }
         });
 
-        effSlider2.addChangeListener(changeEvent -> {
+        effSlider2.addChangeListener(changeEvent -> {       // second effect control slider
             modulationDepth = (double) effSlider2.getValue() / 100;     // thresholding
             new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
         });
 
-        resetButton1.addActionListener(actionEvent -> {
-            effSlider1.setValue(0);
+        resetButton1.addActionListener(actionEvent -> {     // first effect control reset button
+            effSlider1.setValue(25);
             modulationFrequency = (double) effSlider1.getValue() / 5;   // thresholding
             new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
         });
 
-        resetButton2.addActionListener(actionEvent -> {
-            effSlider2.setValue(0);
+        resetButton2.addActionListener(actionEvent -> {     // second effect control reset button
+            effSlider2.setValue(50);
             modulationDepth = (double) effSlider2.getValue() / 100;     // thresholding
             new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
         });
 
-        returnButton.addActionListener(actionEvent -> {
+        returnButton.addActionListener(actionEvent -> {     // return button which closes this frame and starts ChoiceForm
             ChoiceForm.main();
             frame.dispose();
         });
@@ -117,18 +120,20 @@ public class mkSynthForm {
         frame.setVisible(true);
     }
 
-
+    /**
+     * Default GUI settings
+     */
     private void setComponentsUI() {
         imagePanel.setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
         rightPanel.setBackground(Color.WHITE);
 
-        //reset button settings
+        // reset button settings
         returnButton.setBackground(Color.RED);
         returnButton.setFocusable(false);
         returnButton.requestFocus(false);
 
-        //list settings
+        // list settings
         scrollPanel1.setBackground(Color.WHITE);
         scrollPanel1.setViewportView(wavesList);
         wavesList.setLayoutOrientation(JList.VERTICAL);
@@ -136,47 +141,50 @@ public class mkSynthForm {
         wavesList.setFont(new Font("Arial", Font.PLAIN, 12));
         wavesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        //Banner with name of active instrument
+        // banner with name of active instrument
         activeWave.setBackground(Color.WHITE);
         activeWave.setForeground(Color.WHITE);
         activeWave.setFont(new Font("Dubai", Font.ITALIC, 35));
         activeWave.setEditable(false);
         activeWave.setText("");
 
-        //Volume slider settings
+        // volume slider settings
         slider.setMaximum(100);
         slider.setMinimum(0);
         slider.setValue((int) (amplitude * 100));
 
-        //fill boxes
-        fillOctavesBox(octaveBox);
-        fillEffectsBox(effectBox);
-        fillTimeBox(timeBox);
-        setWaves();   //Filling list of waves
+        // fill boxes
+        fillOctavesBox();
+        fillEffectsBox();
+        fillTimeBox();
+        setWaves();   // filling list of waves
 
         effectBox.setSelectedIndex(0);          // None
-        octaveBox.setSelectedIndex(1);          //basic octave
-        wavesList.setSelectedIndex(0);           //SINE
+        octaveBox.setSelectedIndex(1);          // basic octave
+        wavesList.setSelectedIndex(0);          // SINE
 
         waveLabel.setText("Waves");
 
-        //Setting active wave label
+        // setting active wave label
         activeWave.setBackground(Color.WHITE);
         activeWave.setForeground(Color.DARK_GRAY);
         activeWave.setFont(new Font("Dubai", Font.BOLD, 35));
         activeWave.setEditable(false);
         activeWave.setText(wavesList.getSelectedValue());
 
-        //Setting keyboard image
+        // setting keyboard image
         icon.setIcon(new ImageIcon(System.getProperty("user.dir") + "/src/keyboard_colored.jpg"));
 
-        //hide panel with effects settings
+        // hide panel with effects settings
         rightPanel.setVisible(true);
         effectPanel.setVisible(false);
         effectBoxPanel.setVisible(true);
         imagePanel.setVisible(true);
     }
 
+    /**
+     * Add waves names into wavesList
+     */
     private void setWaves() {
         DefaultListModel<String> model = new DefaultListModel<>();
         model.addElement("SINE");
@@ -186,15 +194,21 @@ public class mkSynthForm {
         wavesList.setModel(model);
     }
 
-    private void fillOctavesBox(JComboBox<Integer> box) {
+    /**
+     * Fill octaveBox with octaves
+     */
+    private void fillOctavesBox() {
         int[] tmp = new int[3];
         tmp[0] = 0;
         tmp[1] = 2;
         tmp[2] = 4;
-        for (int element : tmp) box.addItem(element);
+        for (int element : tmp) octaveBox.addItem(element);
     }
 
-    private void fillTimeBox(JComboBox<Integer> box) {
+    /**
+     * Fill timeBox with time
+     */
+    private void fillTimeBox() {
         int[] tmp = new int[6];
         tmp[0] = 1;
         tmp[1] = 2;
@@ -202,17 +216,25 @@ public class mkSynthForm {
         tmp[3] = 4;
         tmp[4] = 5;
         tmp[5] = 6;
-        for (int element : tmp) box.addItem(element);
+        for (int element : tmp) timeBox.addItem(element);
     }
 
-    private void fillEffectsBox(JComboBox<String> box) {
-        box.addItem("NONE");
-        box.addItem("TREMOLO");
-        box.addItem("VIBRATO");
+    /**
+     * Fill effectsBox with effects
+     */
+    private void fillEffectsBox() {
+        effectBox.addItem("NONE");
+        effectBox.addItem("TREMOLO");
+        effectBox.addItem("VIBRATO");
     }
 
-    private void setEffect(int select) {
-        switch (select) {
+    /**
+     * Settings for effect panel. Amount and value of visible sliders and descriptions depends on chosen effect
+     *
+     * @param index index of selected effect
+     */
+    private void setEffect(int index) {
+        switch (index) {
             case Keyboard.NONE:
                 chosenEffect = Keyboard.NONE;
 
@@ -222,7 +244,7 @@ public class mkSynthForm {
                 break;
 
             case Keyboard.TREMOLO:
-                chosenEffect = effects[select];
+                chosenEffect = effects[index];
 
                 effectPanel.setVisible(true);
                 effSetting1.setVisible(true);
@@ -243,7 +265,7 @@ public class mkSynthForm {
                 break;
 
             case Keyboard.VIBRATO:
-                chosenEffect = effects[select];
+                chosenEffect = effects[index];
                 if (modulationFrequency > 10)
                     modulationFrequency /= 2;
 
