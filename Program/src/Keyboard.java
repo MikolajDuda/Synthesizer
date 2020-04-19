@@ -5,6 +5,7 @@ public class Keyboard {
     public final static int NONE = 0;
     public final static int TREMOLO = 1;
     public final static int VIBRATO = 2;
+    public final static int FUZZ = 3;
 
     /**
      * Keyboard buttons which suit piano keys
@@ -84,6 +85,16 @@ public class Keyboard {
                     int note = i;
                     panel.registerKeyboardAction(e -> {
                         byte[] wave = WaveMaker.getWave(waveForm, finalOctave * frequency[note], modulationFrequency);
+                        SoundMaker.playWave(wave);
+                    }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+                }
+                break;
+
+            case FUZZ:
+                for (int i = 0; i < buttons.length; i++) {
+                    int note = i;
+                    panel.registerKeyboardAction(e -> {
+                        byte[] wave = new Fuzz().getWave(WaveMaker.getWave(waveForm, finalOctave * frequency[note]), modulationFrequency, modulationDepth);
                         SoundMaker.playWave(wave);
                     }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
                 }

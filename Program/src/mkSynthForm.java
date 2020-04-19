@@ -32,42 +32,42 @@ public class mkSynthForm {
     private double amplitude = 0.5;     // amplitude must be between 0 and 1;
     private int octave = 2;             // octave must be even because our keyboard has two octaves
     private int time = 1;               // int >= 1
-    private final int[] effects = {Keyboard.NONE, Keyboard.TREMOLO, Keyboard.VIBRATO};
+    private final int[] effects = {Keyboard.NONE, Keyboard.TREMOLO, Keyboard.VIBRATO, Keyboard.FUZZ};
     private int chosenEffect = effects[0];
-    private double modulationFrequency = 5;
-    private double modulationDepth = 0.5;
+    private double modulationOne = 5;
+    private double modulationTwo = 0.5;
 
 
     public mkSynthForm(JFrame frame) {
         setComponentsUI();  // some settings of visual components
 
         // run new Keyboard which starts proper Wave and SoundMaker
-        new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+        new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
 
 
         slider.addChangeListener(changeEvent -> {           // volume slider
             amplitude = (double) slider.getValue() / 100;   // thresholding
-            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
         });
 
         octaveBox.addActionListener(actionEvent -> {        // box with octaves
             if (octaveBox.getSelectedItem() != null) {
                 octave = (int) octaveBox.getSelectedItem();
-                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
             }
         });
 
         timeBox.addActionListener(actionEvent -> {          // box with time
             if (timeBox.getSelectedItem() != null) {
                 time = (int) timeBox.getSelectedItem();
-                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
             }
         });
 
         wavesList.addListSelectionListener(listSelectionEvent -> {  //list of waves
             wave = wavesList.getSelectedIndex();
             activeWave.setText(wavesList.getSelectedValue());
-            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
         });
 
         effectBox.addActionListener(actionEvent -> setEffect(effectBox.getSelectedIndex()));    // box with effects
@@ -75,32 +75,38 @@ public class mkSynthForm {
         effSlider1.addChangeListener(changeEvent -> {       // first effect control slider
             switch (chosenEffect) {
                 case Keyboard.TREMOLO:
-                    modulationFrequency = (double) effSlider1.getValue() / 5;   // thresholding - modulationFrequency ratio between 0 and 20 Hz
-                    new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+                    modulationOne = (double) effSlider1.getValue() / 5;   // thresholding - modulationFrequency ratio between 0 and 20 Hz
+                    new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
                     break;
 
                 case Keyboard.VIBRATO:
-                    modulationFrequency = (double) effSlider1.getValue() / 10;   // thresholding - modulationFrequency ratio between 0 and 10 Hz
-                    new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+                    modulationOne = (double) effSlider1.getValue() / 10;   // thresholding - modulationFrequency ratio between 0 and 10 Hz
+                    new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
                     break;
+
+                case Keyboard.FUZZ:
+                    modulationOne = (double) effSlider1.getValue();   // thresholding - modulationFrequency ratio between 0 and 100
+                    new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
+                    break;
+
             }
         });
 
         effSlider2.addChangeListener(changeEvent -> {       // second effect control slider
-            modulationDepth = (double) effSlider2.getValue() / 100;     // thresholding
-            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+            modulationTwo = (double) effSlider2.getValue() / 100;     // thresholding
+            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
         });
 
         resetButton1.addActionListener(actionEvent -> {     // first effect control reset button
             effSlider1.setValue(25);
-            modulationFrequency = (double) effSlider1.getValue() / 5;   // thresholding
-            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+            modulationOne = (double) effSlider1.getValue() / 5;   // thresholding
+            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
         });
 
         resetButton2.addActionListener(actionEvent -> {     // second effect control reset button
             effSlider2.setValue(50);
-            modulationDepth = (double) effSlider2.getValue() / 100;     // thresholding
-            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+            modulationTwo = (double) effSlider2.getValue() / 100;     // thresholding
+            new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
         });
 
         returnButton.addActionListener(actionEvent -> {     // return button which closes this frame and starts ChoiceForm
@@ -226,6 +232,7 @@ public class mkSynthForm {
         effectBox.addItem("NONE");
         effectBox.addItem("TREMOLO");
         effectBox.addItem("VIBRATO");
+        effectBox.addItem("FUZZ");
     }
 
     /**
@@ -240,7 +247,7 @@ public class mkSynthForm {
 
                 effectPanel.setVisible(false);
 
-                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
                 break;
 
             case Keyboard.TREMOLO:
@@ -253,33 +260,54 @@ public class mkSynthForm {
                 sett2Panel.setVisible(true);
                 effSlider1.setMinimum(0);
                 effSlider1.setMaximum(100);
-                effSlider1.setValue((int) (modulationFrequency * 5));   // dealing with thresholding
+                effSlider1.setValue((int) (modulationOne * 5));   // dealing with thresholding
                 effSlider2.setMinimum(0);
                 effSlider2.setMaximum(100);
-                effSlider2.setValue((int) (modulationDepth * 100));     // dealing with thresholding
+                effSlider2.setValue((int) (modulationTwo * 100));     // dealing with thresholding
                 effectLabel.setText("Tremolo");
                 effSetting1.setText("Frequency");
                 effSetting2.setText("Depth");
 
-                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
                 break;
 
             case Keyboard.VIBRATO:
                 chosenEffect = effects[index];
-                if (modulationFrequency > 10)
-                    modulationFrequency /= 2;
+                if (modulationOne > 10)
+                    modulationOne /= 2;
 
                 effectPanel.setVisible(true);
                 effSetting1.setVisible(true);
                 effSetting2.setVisible(false);
                 sett2Panel.setVisible(false);
-                effSlider1.setValue((int) (modulationFrequency * 10));   // dealing with thresholding
+                effSlider1.setValue((int) (modulationOne * 10));   // dealing with thresholding
                 effSlider1.setMinimum(0);
                 effSlider1.setMaximum(100);
                 effectLabel.setText("Vibrato");
                 effSetting1.setText("Frequency");
 
-                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationFrequency, modulationDepth);
+                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
+                break;
+
+            case Keyboard.FUZZ:
+                chosenEffect = effects[index];
+
+                effectPanel.setVisible(true);
+                effSetting1.setVisible(true);
+                effSetting2.setVisible(true);
+                sett1Panel.setVisible(true);
+                sett2Panel.setVisible(true);
+                effSlider1.setMinimum(0);
+                effSlider1.setMaximum(100);
+                effSlider1.setValue((int) (modulationOne));   // dealing with thresholding
+                effSlider2.setMinimum(0);
+                effSlider2.setMaximum(100);
+                effSlider2.setValue((int) (modulationTwo * 100));     // dealing with thresholding
+                effectLabel.setText("Fuzz");
+                effSetting1.setText("Gain");
+                effSetting2.setText("Mix");
+
+                new Keyboard(mainPanel, wave, amplitude, octave, time, chosenEffect, modulationOne, modulationTwo);
                 break;
         }
     }

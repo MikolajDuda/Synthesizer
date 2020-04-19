@@ -93,14 +93,4 @@ public class Fuzz {
         }
         return tmp;
     }
-
-    public static void main(String[] args) throws InterruptedException {
-        byte[] xx = new byte[]{1, -1, 127, 0, -127, -128};
-        //SoundMaker.playWave(WaveMaker.getWave(WaveMaker.SAWTOOTH,440));
-        System.out.println(Arrays.toString(new Fuzz().getWave(WaveMaker.getWave(WaveMaker.SINE, 440), 110, 1)));
-        System.out.println(Arrays.toString(new Fuzz().getWave(WaveMaker.getWave(WaveMaker.SINE, 440), 10, 1)));
-        SoundMaker.playWave(new Fuzz().getWave(WaveMaker.getWave(WaveMaker.SAWTOOTH, 440), 10, 0.6));
-       // SoundMaker.playWave((WaveMaker.getWave(WaveMaker.SAWTOOTH, 440)));
-
-    }
 }
