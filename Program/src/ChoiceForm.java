@@ -22,6 +22,7 @@ public class ChoiceForm {
         frame.setContentPane(new ChoiceForm(frame).mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setLocation(new Point(0, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4));
         frame.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 200);
         frame.setVisible(true);
     }
@@ -54,7 +55,7 @@ public class ChoiceForm {
     }
 
     /**
-     * Settings of MKSYnthButton
+     * Settings of MKSynthButton
      */
     private void setMkSynthButton() {
         mkSynthButton.setText("M&K Synthesizer");
