@@ -27,7 +27,7 @@ public class SynthForm {
     private JLabel instrumentLabel;
     private JPanel effectBoxPanel;
     private JButton returnButton;
-    private final JEffect[] effects = new JEffect[5];   //amount of available effects
+    private final JEffect[] effects = new JEffect[4];   //amount of available effects
     private int activeEffect = -1;
 
     public SynthForm(JFrame frame) {
@@ -194,10 +194,8 @@ public class SynthForm {
         effects[1] = new JBalance(synthesizer);
         effectBox.addItem("Reverb");
         effects[2] = new JReverb(synthesizer);
-        effectBox.addItem("Tremolo");
-        effects[3] = new JTremolo(synthesizer);
         effectBox.addItem("Chorus");
-        effects[4] = new JChorus(synthesizer);
+        effects[3] = new JChorus(synthesizer);
 
         for (JEffect effect : effects) effect.setDefaultValue(); //Set default value for each effect
     }
@@ -260,10 +258,6 @@ public class SynthForm {
                 effectLabel.setText("Reverb");
                 break;
             case 3:
-                effectBoxAction(JTremolo.TREMOLO);
-                effectLabel.setText("Tremolo");
-                break;
-            case 4:
                 effectBoxAction(JChorus.CHORUS);
                 effectLabel.setText("Chorus");
                 break;
