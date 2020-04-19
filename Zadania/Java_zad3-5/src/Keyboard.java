@@ -5,6 +5,7 @@ public class Keyboard {
     public final static int NONE = 0;
     public final static int TREMOLO = 1;
     public final static int VIBRATO = 2;
+    public final static int NEWEFFECT = 3;
 
     /**
      * Keyboard buttons which suit piano keys
@@ -22,23 +23,6 @@ public class Keyboard {
             65.405, 69.295, 73.415, 77.78, 82.405, 87.305, 92.5, 98.0, 103.825, 110.0, 116.54, 123.47,
             130.81, 138.59, 146.83, 155.56, 164.81, 174.61, 185.00, 196.00, 207.65, 220.00, 233.08, 246.94,
     };
-
-    /**
-     * Apply listeners for all 'piano' keys. Furthermore add listener for space key to mute all sounds
-     *
-     * @param panel JPanel instance for which listeners are applied
-     * @param sound JSynth instance from which sounds will play
-     */
-    public Keyboard(JPanel panel, JSynth sound) {
-        for (int i = 0; i < buttons.length; i++) {  //listeners for all piano keys
-            int note = i;
-            panel.registerKeyboardAction(e -> {
-                for (int j = 0; j < buttons.length; j++) sound.noteOff(j);
-                sound.noteOn(note);
-            }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-        }
-        panel.registerKeyboardAction(actionEvent -> sound.allNotesOff(), KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-    }
 
     /**
      * Set amplitude, time and octave at WaveMaker.
@@ -84,6 +68,16 @@ public class Keyboard {
                     int note = i;
                     panel.registerKeyboardAction(e -> {
                         byte[] wave = WaveMaker.getWave(waveForm, finalOctave * frequency[note], modulationFrequency);
+                        SoundMaker.playWave(wave);
+                    }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+                }
+                break;
+
+            case NEWEFFECT:
+                for (int i = 0; i < buttons.length; i++) {
+                    int note = i;
+                    panel.registerKeyboardAction(e -> {
+                        byte[] wave = new NewEffect().getWave(WaveMaker.getWave(waveForm, finalOctave * frequency[note]), modulationFrequency, modulationDepth);
                         SoundMaker.playWave(wave);
                     }, KeyStroke.getKeyStroke(buttons[note], 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
                 }

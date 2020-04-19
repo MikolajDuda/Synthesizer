@@ -9,7 +9,8 @@ public class SoundMaker {
     private static SourceDataLine line;
 
     /*
-        TODO: Przetestuj działanie M&K Synthesizer. Spróbuj zagrać kilka dźwięków jednocześnie.
+        TODO:   Zad 3
+         Przetestuj działanie M&K Synthesizer. Spróbuj zagrać kilka dźwięków jednocześnie.
          Jak zausłyszałeś nie jest to możliwe. Nawet próba zagrania kilku dźwięków po sobie skutkuje
          wybrzmieniem każdego z nich przez określony przez Box Time czas i dopiero wtedy zaczynamy słyszeć kolejny.
          Zastanów się jak można poprawić kod, żeby możliwe było granie kilku dźwięków jednocześnie. Jest to możliwe,
@@ -26,19 +27,19 @@ public class SoundMaker {
      * @param wave Bytes array which is played wave
      */
     public static void playWave(byte[] wave) {
-            try {
-                line = AudioSystem.getSourceDataLine(af);
-                line.open(af);
-                line.start();
+        try {
+            line = AudioSystem.getSourceDataLine(af);
+            line.open(af);
+            line.start();
 
-                writeToLine(line, wave);
+            writeToLine(line, wave);
 
-                line.drain();
-                line.close();
+            line.drain();
+            line.close();
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
