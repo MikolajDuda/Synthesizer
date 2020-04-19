@@ -75,10 +75,35 @@ public class Prezentacja {
     }
 }
 /*
-Bibliografia:
+    Bibliografia:
 
-https://docs.oracle.com/javase/tutorial/sound/sampled-overview.html
-https://www.ibm.com/developerworks/library/it/it-0801art38/
-https://www.midi.org/
+    opis syntezatora:
+    https://pl.wikipedia.org/wiki/Syntezator
+    https://en.wikipedia.org/wiki/Synthesizer
+
+    zdjęcia syntezatorów:
+    https://www.nordkeyboards.com/
+    https://pl.wikipedia.org/wiki/Syntezator
+    https://musiccenter.pl/
+
+    Opis dźwięku:
+    https://pl.wikipedia.org/wiki/Dźwięk
+
+    opisy fal:
+    http://users.cs.cf.ac.uk/Dave.Marshall/CM0268/PDF/07_CM0268_DSP.pdf
+    https://en.wikipedia.org/wiki/Triangle_wave
+    https://en.wikipedia.org/wiki/Sawtooth_wave
+    https://www.youtube.com/watch?v=OSCzKOqtgcA&t=1284s
+
+    Opisy SoundMaker:
+    https://docs.oracle.com/javase/tutorial/sound/sampled-overview.html
+
+    opisy efektów:
+    http://users.cs.cf.ac.uk/Dave.Marshall/CM0268/PDF/10_CM0268_Audio_FX.pdf
+
+    MIDI:
+    https://docs.oracle.com/javase/tutorial/sound/sampled-overview.html
+    https://www.ibm.com/developerworks/library/it/it-0801art38/
+    https://www.midi.org/
 
  */
